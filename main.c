@@ -13,7 +13,7 @@ int main(){
         printf("---------------------------------\nDigite o numero correspondente: ");
         scanf("%d", &menuOpc);
 
-        if(menuOpc == 4){
+        if(menuOpc == 8){
             mostraMenu = 0;
         }
     }
