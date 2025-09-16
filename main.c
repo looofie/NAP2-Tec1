@@ -1,10 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h> //Precisa para limpar o terminal pela funcao system()
 //cabeçalho de funçoes
+void escolhaLenda();
 void noDaIara1A();
 void noDaIara2A();
 void noDaIara2B();
 void noDaIara2C();
+
+void noDaIara3A();
+void noDaIara3B();
+void noDaIara3C();
+
+void noDaIara4A();
+void noDaIara4B();
+void noDaIara4C();
+
+void noDaIara5A();
+void noDaIara5B();
+void noDaIara5C();
+
+void finalPositivo();
+void finalNegativo1();
+void finalNegativo2();
+
+
+
+
+
 //função de escolha de opções
 int escolha(int min, int max) {
     int op;
@@ -176,11 +198,11 @@ void noDaIara4A() {
     int op = escolha(1, 3);
     switch (op)
     {
-    case 1: printf("Num reflexo de puro pavor, Aruã chuta com força, sentindo o toque se desfazer. O alívio dura apenas um segundo. Pois quando ele levanta o olhar, a Iara está lá, parada à frente do barco, tão perto que ele consegue ver as gotas de água escorrendo dos longos cabelos negros dela, como se fossem pequenos diamantes líquidos.")
+    case 1: printf("Num reflexo de puro pavor, Aruã chuta com força, sentindo o toque se desfazer. O alívio dura apenas um segundo. Pois quando ele levanta o olhar, a Iara está lá, parada à frente do barco, tão perto que ele consegue ver as gotas de água escorrendo dos longos cabelos negros dela, como se fossem pequenos diamantes líquidos.");
     noDaIara5A(); break;
-    case 2: printf("Ele se agarra à madeira do barco com toda a força que tem, cravando os dedos, recusando-se a ceder. Mas não é ele quem precisa se mover. A correnteza ao redor do barco começa a girar, primeiro devagar, depois cada vez mais rápido, formando um redemoinho furioso que puxa o pequeno casco para o seu centro, como se o rio quisesse engoli-lo")
+    case 2: printf("Ele se agarra à madeira do barco com toda a força que tem, cravando os dedos, recusando-se a ceder. Mas não é ele quem precisa se mover. A correnteza ao redor do barco começa a girar, primeiro devagar, depois cada vez mais rápido, formando um redemoinho furioso que puxa o pequeno casco para o seu centro, como se o rio quisesse engoli-lo");
     noDaIara5B(); break;
-    case 3: printf("Vencido pela curiosidade, ele se inclina e mergulha o rosto na água, tentando enxergar o que o segura. E então, tudo para. O toque some, o rio se acalma de repente, a água fica límpida como um espelho. A neblina se abre, revelando um caminho estreito e sereno à sua frente, como um convite silencioso para a salvação... ou para uma armadilha...")
+    case 3: printf("Vencido pela curiosidade, ele se inclina e mergulha o rosto na água, tentando enxergar o que o segura. E então, tudo para. O toque some, o rio se acalma de repente, a água fica límpida como um espelho. A neblina se abre, revelando um caminho estreito e sereno à sua frente, como um convite silencioso para a salvação... ou para uma armadilha...");
     noDaIara5C(); break;    
     }
 }
