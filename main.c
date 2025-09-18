@@ -1,5 +1,9 @@
 #include <stdio.h>
-#include <stdlib.h> //Precisa para limpar o terminal pela funcao system()
+#include <locale.h>
+#include <stdlib.h> //Para limpar o terminal pela funcao system()
+#include <windows.h> // Para abrir a janela em modo cheio e suportar UTF-8
+
+
 //cabeçalho de funçoes
 void escolhaLenda();
 void noDaIara1A();
@@ -64,6 +68,50 @@ void noFinalRuim();
 void noFinalNeutro();
 
 
+ // Função que desenha a imagem ascii
+int desenhar(char *str){
+    FILE *file_pointer;
+    char buffer[256]; // Buffer para armazenar cada linha
+
+    // Abrir o arquivo em modo leitura
+    file_pointer = fopen(str, "r"); 
+
+    // Checar se o arquivo foi aberto com sucesso
+    if (file_pointer == NULL) {
+        perror("Erro ao abrir o arquivo");
+        return EXIT_FAILURE; // Indica o erro
+    }
+
+    printf("\n");
+
+    // Ler e printar cada linha até o fim do arquivo
+    while (fgets(buffer, sizeof(buffer), file_pointer) != NULL) {
+        printf("%s", buffer);
+    }
+
+    // Fecha o arquivo
+    fclose(file_pointer);
+
+    printf("\n");
+
+    return EXIT_SUCCESS; // Indica execução bem-sucedida
+
+}
+
+
+// Funcao que abre janela em modo cheio
+void janelaCheia(){
+    HWND janela_console = GetConsoleWindow();
+
+    ShowWindow(janela_console, SW_MAXIMIZE);
+
+    LONG_PTR estilo_atual = GetWindowLongPtr(janela_console, GWL_STYLE);
+    LONG_PTR novo_estilo = estilo_atual & ~(WS_THICKFRAME | WS_MAXIMIZEBOX);
+
+    SetWindowLongPtr(janela_console, GWL_STYLE, novo_estilo);
+    SetWindowPos(janela_console, NULL, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER);
+}
+
 
 
 
@@ -74,6 +122,7 @@ int escolha(int min, int max) {
         printf("\nEscolha: ");
         scanf("%d", &op);
     } while (op < min || op > max);
+    system("cls");
     return op;
 }
 
@@ -83,7 +132,9 @@ void intro() {
     printf("Narração: É noite de domingo. Sua mãe acaba de te aprontar para dormir. Ainda sem sono, você pede a ela uma história.\n");
     printf("Mãe: Pronto, meu amor… Quer que eu conte aquela história do coelhinho ou invento algo novo hoje?\n");
     printf("Protagonista: Hum… acho que quero algo mais… assustador. Mas não muito, tá? Só pra dar um friozinho na barriga.\n");
-    printf("Assustador, é? Então acho que posso te contar algumas lendas que a vovó me contava quando eu era pequena. São histórias da nossa Amazônia… sobre a Iara, a Matinta Perera e Boiúna. Qual você quer ouvir primeiro?\n");
+    desenhar("A1.txt");
+    printf("Assustador, é? Então acho que posso te contar algumas lendas que a vovó me contava quando eu era pequena.\nSão histórias da nossa Amazônia… sobre a Iara, a Matinta Perera e Boiúna.\n");
+    printf("Qual você quer ouvir primeiro?\n");
     escolhaLenda();
 }
 
@@ -104,6 +155,7 @@ void noDaIara1A() {
     printf("A Iara é uma sereia das águas doces, linda como o luar refletido no rio. Dizem que ela vive nas profundezas, com cabelos longos e negros, pele dourada pelo sol e olhos verdes como a mata.\n");
     printf("Mas cuidado… sua beleza é perigosa. Ela canta para encantar pescadores e viajantes, levando-os para o fundo do rio, de onde nunca mais voltam.\n");
     printf("Uma noite, um jovem pescador chamado Aruã estava sozinho no barco, quando ouviu uma melodia suave vindo da neblina sobre o rio…\n");
+    desenhar("A2.txt");
     printf("Se fosse você no lugar de Aruã, o que faria?\n");
     printf("1. Seguir o som.\n");
     printf("2. Ficar parado e ouvir.\n");
@@ -631,7 +683,7 @@ void noTransicaoMatinta() {
 }
 
 
-void noDaBoiuna1C() {
+void noDoBoiuna1C() {
     printf("Então escute com atenção... A Boiúna não é como as outras lendas. Ela não canta, nem pede nada. Ela é a própria força do rio. Uma cobra tão imensa que seu corpo adormecido está enrolado sob a nossa cidade, de um bairro ao outro. Os mais velhos contam que o dia em que a Boiúna sair de seu repouso, Belém desmoronará e será tragada pelas águas da Baía do Guajará...\n");
     printf("E havia um menino chamado Matheus, que ouvia essa história e ria. Ele achava que era só conversa para assustar os medrosos. Para provar sua coragem, numa tarde em que a maré estava cheia e calma, ele pegou sua pequena canoa e remou sozinho para o meio da baía, bem onde diziam ser o local de repouso da cabeça da cobra gigante.\n");
     printf("A água estava parada como um espelho escuro. O desafio de Matheus ao silêncio da baía estava prestes a ter uma resposta...\n");
@@ -897,6 +949,12 @@ void noFinalRuim() {
 }
 
 int main() {
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+
+    janelaCheia();
+    system("color 80");
+
     intro();
     return 0;
 }
