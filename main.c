@@ -148,7 +148,7 @@ void intro() {
 
 // variaveis booleanas que indicam se a lenda já foi contada ou nao
 // 1 para não contada e 0 para contada
-int iara = 0;
+int iara = 1;
 int matinta = 1;
 int boiuna = 1;
 
