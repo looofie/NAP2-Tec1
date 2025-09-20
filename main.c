@@ -114,7 +114,7 @@ int escolha(int min, int max) {
     int op;
     do {
         printaLinha();
-        printf("|                            Escolha uma opção ou digite 0 para sair do jogo                                           |\n");
+        printf("|                                  Digite o número da opção ou 0 para sair do jogo                                     |\n");
         printaLinha();
         scanf("%d", &op);
         if (op == 0){exit(0);}
@@ -122,6 +122,7 @@ int escolha(int min, int max) {
     } while (op < min || op > max);
     system("cls");
     return op;
+    
 }
 
 //================================intro=================================
@@ -139,21 +140,50 @@ void intro() {
     printaLinha(); printf("Mãe: Pronto, meu amor… Quer que eu conte aquela história do coelhinho ou invento algo novo hoje?\n"); 
     printaLinha(); printf("Protagonista: Hum… acho que quero algo mais… assustador. Mas não muito, tá? Só pra dar um friozinho na barriga.\n"); 
     printaLinha(); printf("Assustador, é? Então acho que posso te contar algumas lendas que a vovó me contava quando eu era pequena.\nSão histórias da nossa Amazônia… sobre a Iara, a Matinta Perera e Boiúna.\n");
-    printaLinha(); printf("Qual você quer ouvir primeiro?\n");
-    escolhaLenda();
+    printaLinha(); printf("\n");
+    system("pause");
+    escolhaLenda(1, 1, 1);
 }
 
-void escolhaLenda() {
-printf("---------------------------\n");
-printf("| 1. Iara                 |\n");
-printf("---------------------------\n");
-printf("| 2. Matinta Perera       |\n");
-printf("---------------------------\n");
-printf("| 3. Boiúna               |\n");
-printf("---------------------------\n");
 
-int op = escolha(1, 3);
-switch (op) {
+// variaveis booleanas que indicam se a lenda já foi contada ou nao
+// 1 para não contada e 0 para contada
+int iara = 0;
+int matinta = 1;
+int boiuna = 1;
+
+void escolhaLenda() { 
+    int op; 
+    while(1){
+    system("cls");
+    desenhar("ilustracoes/mae.txt");
+    printaLinha();
+    printf("|                                         Qual você quer ouvir agora?                                                  |\n");
+    printaLinha();
+    if(iara){
+    printf("---------------------------\n");
+    printf("| 1. Iara                 |\n");
+    printf("---------------------------\n");
+    }
+    if(matinta){
+    printf("---------------------------\n");
+    printf("| 2. Matinta Perera       |\n");
+    printf("---------------------------\n");
+    }
+    if(boiuna){
+    printf("---------------------------\n");
+    printf("| 3. Boiúna               |\n");
+    printf("---------------------------\n");
+    }  
+
+    op = escolha(1, 3);
+
+    if(op == 1 && iara){break;}
+    if(op == 2 && matinta){break;}
+    if(op == 3 && boiuna){break;}
+
+    }
+    switch (op){
     case 1: noDaIara1A(); break;
     case 2: noDaMatinta1B(); break;
     case 3: noDoBoiuna1C(); break;
@@ -163,16 +193,16 @@ switch (op) {
 void creditos(){
     system("cls");
     printaLinha();
-    printf("|                                 ------------------ CÓDIGO ----------------------                                     |\n");
+    printf("|--------------------------------------------------- CÓDIGO -----------------------------------------------------------|\n");
     printf("|                                            Matheus João Vaz Lima                                                     |\n");
     printf("|                                       Luis Fernando Ferreira dos Santos                                              |\n");
     printaLinha();
     printaLinha();
-    printf("|                                 ------------------ ROTEIRO ---------------------                                     |\n");
+    printf("|--------------------------------------------------- ROTEIRO ----------------------------------------------------------|\n");
     printf("|                                          Bruna Sabrina Tavares Oliveira                                              |\n");
     printaLinha();
     printaLinha();
-    printf("|                                 -------------- POLIMENTO E TESTES --------------                                     |\n");
+    printf("|----------------------------------------------- POLIMENTO E TESTES ---------------------------------------------------|\n");
     printf("|                                           João Felipe Barros de Moraes                                               |\n");
     printf("|                                          Bruna Sabrina Tavares Oliveira                                              |\n");
     printaLinha();
@@ -874,6 +904,7 @@ void noTransicaoIara() {
 
 //=====================================lenda Matinta=============================================
 void noDaMatinta1B() {
+    system("cls");
     desenhar("ilustracoes/matinta.txt");
 	printaLinha();
 	printf("| Então vamos para a história da Matinta Perêra... Dizem que ela não é exatamente uma pessoa, nem exatamente um bicho. |\n");
@@ -1667,17 +1698,17 @@ void noFinalNegativo2Boiuna() {
 
 void noCenaFinalBoiuna() {
     printf("Mãe: A Boiúna, meu amor, nos ensina sobre o respeito pelas forças que não podemos controlar. Ela é a natureza em sua forma mais poderosa. A história de Matheus é um lembrete de que a arrogância e o desrespeito podem ter consequências terríveis, não apenas para nós, mas para todos ao nosso redor. E que sob a calma aparência de nossas águas, dorme um poder que deve, para sempre, ser deixado em paz.\n");
+    system("pause");
 }
 
 
 void noTransicaoFinal() {
-
-
     printf("(A mãe faz uma longa pausa. O quarto fica em silêncio, preenchido apenas pelo som suave dos grilos lá fora. A jornada pelas lendas terminou.)\n");
     printf("E essa, meu bem, foi a última. A Iara, a Matinta e a Boiúna... todas as grandes lendas que a noite nos trouxe. Cada uma com seu perigo, cada uma com sua lição.\n");
     printf("Mas a parte mais importante não foram as histórias que eu contei. Foi o caminho que você escolheu para o Aruã, para o Bento e para o Matheus. As suas decisões de coragem, de medo, de respeito ou de teimosia.\n");
     printf("(Ela se aproxima da sua cama, e o tom de voz dela muda, tornando-se mais sério e um pouco misterioso, como se fosse revelar um último segredo.)\n");
     printf("Essas escolhas ecoam para além das histórias, sabe? Elas moldam a noite ao nosso redor. Que tipo de noite a sua jornada nos trouxe…?\n");
+    system("pause");
 }
 
 
@@ -1689,6 +1720,7 @@ void noFinalBom() {
     printf("(Ela se vira para você, com um sorriso orgulhoso.)\n");
     printf("As criaturas da mata e dos rios sentem quem tem o coração bom. Hoje, você não apenas ouviu histórias, você se tornou parte delas. Uma morada das lendas. Agora pode dormir, sabendo que os espíritos da Amazônia te olham com bons olhos. E que seus sonhos serão sempre protegidos por eles. Boa noite, minha criança.\n");
     printf("(A criança se sente segura e conectada com a magia da sua terra. Adormece com um sorriso, sentindo-se protegida.)\n");
+    system("pause");
 }
 
 
@@ -1700,6 +1732,7 @@ void noFinalNeutro() {
     printf("(Ela para por um instante, como se estivesse ouvindo algo que só ela pode escutar.)\n");
     printf("O importante é nunca esquecer as lições que elas nos dão. A prudência é uma grande amiga. Agora feche os olhos e tente dormir... mas se ouvir algum assobio na janela, já sabe o que fazer, não é?\n");
     printf("(A mãe apaga a luz e sai. A criança se encolhe sob as cobertas. Não se sente em perigo, mas também não se sente completamente em paz. O silêncio do quarto parece pesado, e qualquer som lá fora agora soa como um sussurro de lenda.)\n");
+    system("pause");
 }
 
 
@@ -1715,6 +1748,7 @@ void noFinalRuim() {
     printf("(De repente, do lado de fora, ouve-se um som baixo e triste, como o choro de muitas vozes misturadas, vindo com o vento.)\n");
     printf("Você está ouvindo? É o chamado do igarapé. Eles estão chamando por mais uma história. A sua. Reze, meu amor. Reze para que eles não encontrem o caminho até esta janela.\n");
     printf("(A mãe não sai do quarto. Ela se senta em uma cadeira no canto, vigiando a janela. A criança não consegue dormir. O som do choro continua, e a cada rajada de vento, parece ficar mais perto. A noite será muito, muito longa.)\n");
+    system("pause");
 }
 
 int main() {

@@ -130,21 +130,33 @@ void intro() {
     escolhaLenda();
 }
 
-void escolhaLenda() {
-printf("---------------------------\n");
-printf("| 1. Iara                 |\n");
-printf("---------------------------\n");
-printf("| 2. Matinta Perera       |\n");
-printf("---------------------------\n");
-printf("| 3. Boiúna               |\n");
-printf("---------------------------\n");
-
-int op = escolha(1, 3);
-switch (op) {
-    case 1: noDaIara1A(); break;
-    case 2: noDaMatinta1B(); break;
-    case 3: noDoBoiuna1C(); break;
+// op1 = iara, op2 = matinta, op3 = boiuna
+// 0 = lenda já contada e 1 = lenda não contada
+void escolhaLenda(int op1, int op2, int op3) { 
+    if(op1){
+    printf("---------------------------\n");
+    printf("| 1. Iara                 |\n");
+    printf("---------------------------\n");
     }
+    if(op2){
+    printf("---------------------------\n");
+    printf("| 2. Matinta Perera       |\n");
+    printf("---------------------------\n");
+    }
+    if(op3){
+    printf("---------------------------\n");
+    printf("| 3. Boiúna               |\n");
+    printf("---------------------------\n");
+    }    
+
+    int op = escolha(1, num);
+    int num = op1 + op2 + op3;
+
+    switch (op) {
+        case 1: noDaIara1A(); break;
+        case 2: noDaMatinta1B(); break;
+        case 3: noDoBoiuna1C(); break;
+        }
 }
 // ===============================lenda Iara============================
 
