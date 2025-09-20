@@ -5,6 +5,8 @@
 
 
 //cabeçalho de funçoes
+void menu();
+
 void escolhaLenda();
 void noDaIara1A();
 void noDaIara2A();
@@ -105,25 +107,27 @@ void janelaCheia(){
     SetWindowPos(janela_console, NULL, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER);
 }
 
-
+void printaLinha(){ printf("------------------------------------------------------------------------------------------------------------------------\n");}
 
 //função de escolha de opções
 int escolha(int min, int max) {
     int op;
     do {
-        printf("Escolha: ");
+        printaLinha();
+        printf("|                            Escolha uma opção ou digite 0 para sair do jogo                                           |\n");
+        printaLinha();
         scanf("%d", &op);
+        if (op == 0){exit(0);}
+
     } while (op < min || op > max);
     system("cls");
     return op;
 }
 
-void printaLinha(){ printf("------------------------------------------------------------------------------------------------------------------------\n");}
-
-
 //================================intro=================================
 
 void intro() {
+    system("cls");
     desenhar("ilustracoes/ceu.txt");
     system("color 07");
     printf("Narração: É noite de domingo. Sua mãe acaba de te aprontar para dormir. Ainda sem sono, você pede a ela uma história.\n");
@@ -155,6 +159,48 @@ switch (op) {
     case 3: noDoBoiuna1C(); break;
     }
 }
+
+void creditos(){
+    system("cls");
+    printaLinha();
+    printf("|                                 ------------------ CÓDIGO ----------------------                                     |\n");
+    printf("|                                            Matheus João Vaz Lima                                                     |\n");
+    printf("|                                       Luis Fernando Ferreira dos Santos                                              |\n");
+    printaLinha();
+    printaLinha();
+    printf("|                                 ------------------ ROTEIRO ---------------------                                     |\n");
+    printf("|                                          Bruna Sabrina Tavares Oliveira                                              |\n");
+    printaLinha();
+    printaLinha();
+    printf("|                                 -------------- POLIMENTO E TESTES --------------                                     |\n");
+    printf("|                                           João Felipe Barros de Moraes                                               |\n");
+    printf("|                                          Bruna Sabrina Tavares Oliveira                                              |\n");
+    printaLinha();
+    system("pause");
+    menu();
+
+}
+
+
+void menu(){
+    system("cls");
+    desenhar("ilustracoes/titulo.txt");
+    int opMenu;
+
+    printaLinha();
+    printf("|                                                   Escolha                                                            |\n");
+    printaLinha();
+    scanf("%d", &opMenu);
+
+    switch (opMenu)
+    {
+    case 1: intro(); break;
+    case 2: creditos(); break;
+    case 3: exit(0); 
+
+    }
+}
+
 // ===============================lenda Iara============================
 
 void noDaIara1A() {
@@ -812,6 +858,7 @@ void noTransicaoIara() {
         case 2: noDoBoiuna1C(); break;
         case 3:
 
+        system("color 07");
         printaLinha();
         printf("|                Boa noite, meu amor. Sonhe com os anjos e com as lendas da nossa terra. Te amo muito.                 |\n");
         printaLinha();
@@ -827,13 +874,18 @@ void noTransicaoIara() {
 
 //=====================================lenda Matinta=============================================
 void noDaMatinta1B() {
+    desenhar("ilustracoes/matinta.txt");
 	printaLinha();
 	printf("| Então vamos para a história da Matinta Perêra... Dizem que ela não é exatamente uma pessoa, nem exatamente um bicho. |\n");
 	printf("|      É um espírito antigo da floresta, uma velha feiticeira que durante o dia pode ser qualquer vizinha sua,         |\n");
 	printf("|                                       mas que à noite se transforma.                                                 |\n");
 	printf("|      Ela voa sobre as casas, assobiando um som fino e arrepiante, pedindo fumo ou café. E ai de quem nega...         |\n");
 	printaLinha();
-	
+
+    system("pause");
+
+    system("cls");
+	desenhar("ilustracoes/bento.txt");
 	printaLinha();
 	printf("|      A nossa história começa com um homem chamado Bento. Ele era um homem teimoso, que não acreditava muito          |\n");
 	printf("|nessas conversas de assombração. Certa noite, quando o único som era o dos grilos, ele ouviu, bem perto da sua janela,|\n");
@@ -1197,11 +1249,11 @@ void noDaMatinta4B() {
 	
 	printaLinha();
 	printf("-----------------------------------------\n");
-	printf("| 1. Mudar-se da casa.                 |\n");
+	printf("| 1. Mudar-se da casa.                  |\n");
 	printf("-----------------------------------------\n");
-	printf("| 2. Tentar fazer uma oferenda de paz. |\n");
+	printf("| 2. Tentar fazer uma oferenda de paz.  |\n");
 	printf("-----------------------------------------\n");
-	printf("| 3. Pedir ajuda a um pajé.            |\n");
+	printf("| 3. Pedir ajuda a um pajé.             |\n");
 	printf("-----------------------------------------\n");
 
     int op = escolha(1, 3);
@@ -1311,71 +1363,66 @@ void noDaMatinta5C() {
 
 
 void noFinalPositivoMatinta() {
-	
 	printaLinha();
 	printf("|                                               Bento aprendeu a lição.                                                |\n");
 	printf("|            Ele passou a respeitar os mistérios da noite e a ensinar os mais novos a sempre serem generosos.          |\n");
 	printf("|                                    Ele se tornou um guardião daquela história,                                       |\n");
 	printf("|            lembrando a todos que um pouco de fumo e respeito podem garantir a paz e a proteção da floresta.          |\n");
-	printaLinha();
+	printaLinha(); system("pause");
     noCenaFinalMatinta();
 }
 
 
 void noFinalNegativo1Matinta() {
-	
 	printaLinha();
 	printf("|                                  Bento se perdeu para o seu próprio medo e desrespeito.                              |\n");
 	printf("|                                 A história dele virou um aviso para as crianças teimosas,                            |\n");
 	printf("|         um exemplo de como a arrogância diante do desconhecido pode levar um homem à loucura e ao esquecimento.      |\n");
 	printf("|    Dizem que, às vezes, junto com o assobio da Matinta, se ouve na mata o lamento de um homem perdido na escuridão.  |\n");
 	printaLinha();
-    noCenaFinalMatinta();
+    noCenaFinalMatinta(); system("pause");
 }
 
 
 void noFinalNegativo2Matinta() {
-	
-printaLinha();
-printf("|                                    Bento conseguiu viver, mas nunca em paz de verdade.                               |\n");
-printf("|                                      Ele carregou para sempre o peso da sua escolha,                                 |\n");
-printf("|                            vivendo com a sombra de uma ameaça que poderia voltar a qualquer momento.                 |\n");
-printf("|                             A história dele nos ensina que ignorar um problema não o faz desaparecer                 |\n");
-printf("|                                   e que a paz comprada com o medo não é paz de verdade.                              |\n");
-printaLinha();
-    noCenaFinalMatinta();
+    printaLinha();
+    printf("|                                    Bento conseguiu viver, mas nunca em paz de verdade.                               |\n");
+    printf("|                                      Ele carregou para sempre o peso da sua escolha,                                 |\n");
+    printf("|                            vivendo com a sombra de uma ameaça que poderia voltar a qualquer momento.                 |\n");
+    printf("|                             A história dele nos ensina que ignorar um problema não o faz desaparecer                 |\n");
+    printf("|                                   e que a paz comprada com o medo não é paz de verdade.                              |\n");
+    printaLinha();
+    noCenaFinalMatinta(); system("pause");
 }
 
 
 void noCenaFinalMatinta() {
-	
-printaLinha();
-printf("|                    Mãe: A Matinta, meu amor, é mais que uma assombração. Ela é um teste.                             |\n");
-printf("|      Ela testa a nossa generosidade, o nosso respeito pelo que é mais velho, pelo que não entendemos.                |\n");
-printf("|          Ela nos lembra que vivemos cercados de mistérios e que a melhor forma de lidar com eles                     |\n");
-printf("|                   não é com a força ou com a teimosia, mas com a sabedoria e a humildade.                            |\n");
-printf("|                  E, claro, a nunca negar um pouco de café ou fumo para uma visita noturna.                           |\n");
-printaLinha();
-    noTransicaoMatinta();
+    printaLinha();
+    printf("|                    Mãe: A Matinta, meu amor, é mais que uma assombração. Ela é um teste.                             |\n");
+    printf("|      Ela testa a nossa generosidade, o nosso respeito pelo que é mais velho, pelo que não entendemos.                |\n");
+    printf("|          Ela nos lembra que vivemos cercados de mistérios e que a melhor forma de lidar com eles                     |\n");
+    printf("|                   não é com a força ou com a teimosia, mas com a sabedoria e a humildade.                            |\n");
+    printf("|                  E, claro, a nunca negar um pouco de café ou fumo para uma visita noturna.                           |\n");
+    printaLinha();
+    noTransicaoMatinta(); system("pause");
 }
 
 
 void noTransicaoMatinta() {
-    printf("  \n");
-	
+	system("cls");
+    desenhar("ilustracoes/mae.txt");
+
 	printaLinha();
-	printf("|                     Você foi muito corajosa ouvindo a história da Matinta...                                    |\n");
-	printf("|        Agora, só falta uma lenda para fechar nossa noite. A mais antiga e poderosa de todas.                    |\n");
-	printf("|                A lenda da Boiúna, a Cobra-Grande que dorme no fundo do rio e que,                               |\n");
-	printf("|                quando acorda, tem força para criar ondas que podem virar o mundo.                               |\n");
+	printf("|                     Você foi muito corajoso ouvindo a história da Matinta...                                         |\n");
+	printf("|        Agora, só falta uma lenda para fechar nossa noite. A mais antiga e poderosa de todas.                         |\n");
+	printf("|                A lenda da Boiúna, a Cobra-Grande que dorme no fundo do rio e que,                                    |\n");
+	printf("|                quando acorda, tem força para criar ondas que podem virar o mundo.                                    |\n");
 	printaLinha();
 
     printaLinha();
-    printf("|                               Ainda tem coragem para a última história?                                         |\n");
+    printf("|                               Ainda tem coragem para a última história?                                              |\n");
     printaLinha();
         
-	
-	printaLinha();
 	printf("-----------------------------------------\n");
 	printf("|  1. Sim, conta a da Boiúna.           |\n");
 	printf("-----------------------------------------\n");
@@ -1624,6 +1671,8 @@ void noCenaFinalBoiuna() {
 
 
 void noTransicaoFinal() {
+
+
     printf("(A mãe faz uma longa pausa. O quarto fica em silêncio, preenchido apenas pelo som suave dos grilos lá fora. A jornada pelas lendas terminou.)\n");
     printf("E essa, meu bem, foi a última. A Iara, a Matinta e a Boiúna... todas as grandes lendas que a noite nos trouxe. Cada uma com seu perigo, cada uma com sua lição.\n");
     printf("Mas a parte mais importante não foram as histórias que eu contei. Foi o caminho que você escolheu para o Aruã, para o Bento e para o Matheus. As suas decisões de coragem, de medo, de respeito ou de teimosia.\n");
@@ -1633,6 +1682,7 @@ void noTransicaoFinal() {
 
 
 void noFinalBom() {
+    system("color 07");
     printf("Pronto, meu amor... as histórias acabaram. Você ouviu todas, enfrentou os perigos com coragem e, mais importante, com sabedoria. Você mostrou respeito.\n");
     printf("(A mãe se levanta e vai até a janela do quarto, olhando para a noite lá fora.)\n");
     printf("As lendas da nossa terra não são feitas só para dar medo. Elas são testes, são lições. E você, meu bem, aprendeu a lição mais importante de todas: que a verdadeira força não está em desafiar o desconhecido, mas em compreendê-lo e respeitá-lo. Você salvou o Aruã, mostrou generosidade à Matinta e teve humildade diante da Boiúna.\n");
@@ -1643,6 +1693,7 @@ void noFinalBom() {
 
 
 void noFinalNeutro() {
+    system("color 07");
     printf("É... as histórias da noite acabaram. Algumas escolhas foram sábias, outras... nem tanto. O importante é que você está aqui, na sua cama.\n");
     printf("(A mãe ajeita o seu lençol, mas o sorriso dela parece um pouco cansado, preocupado.)\n");
     printf("As lendas são assim mesmo, meu bem. Nem sempre a gente acerta. Às vezes, a gente foge do perigo, mas às vezes o medo ou a teimosia falam mais alto. O mundo lá fora é cheio de Iaras, Matintas e Boiúnas, e cada dia é uma escolha.\n");
@@ -1653,6 +1704,7 @@ void noFinalNeutro() {
 
 
 void noFinalRuim() {
+    system("color 07");
     printf("As histórias acabaram...\n");
     printf("(A mãe fala com a voz baixa, quase um sussurro. Ela não olha para você, mas para a janela, como se visse algo assustador lá fora.)\n");
     printf("Você... você fez escolhas difíceis, meu amor. Escolhas que alimentaram a escuridão. A Iara levou um rapaz, a Matinta atormentou um homem, a Boiúna... ah, a Boiúna quase nos levou junto. As lendas não são só histórias, elas são espíritos. E quando a gente erra com eles, eles não esquecem.\n");
@@ -1670,9 +1722,8 @@ int main() {
     SetConsoleCP(CP_UTF8);
 
     janelaCheia();
-    system("color 07");
-    //system("color 80");
 
+    menu();
     intro();
     return 0;
 }
