@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <locale.h>
 #include <stdlib.h> //Para limpar o terminal pela funcao system()
-#include <windows.h> // Para abrir a janela em modo cheio e suportar UTF-8
+#include <windows.h> //  Para abrir a janela em modo cheio e suportar UTF-8
 
 
 //cabeçalho de funçoes
@@ -68,6 +68,8 @@ void noFinalRuim();
 void noFinalNeutro();
 
 
+
+
  // Função que desenha a imagem ascii
 int desenhar(char *str){
     FILE *file_pointer;
@@ -81,8 +83,6 @@ int desenhar(char *str){
         perror("Erro ao abrir o arquivo");
         return EXIT_FAILURE; // Indica o erro
     }
-
-    printf("\n");
 
     // Ler e printar cada linha até o fim do arquivo
     while (fgets(buffer, sizeof(buffer), file_pointer) != NULL) {
@@ -114,34 +114,49 @@ void janelaCheia(){
 
 
 
-
 //função de escolha de opções
 int escolha(int min, int max) {
     int op;
     do {
-        printf("\nEscolha: ");
+        printf("Escolha: ");
         scanf("%d", &op);
     } while (op < min || op > max);
     system("cls");
     return op;
 }
 
+void printaLinha(){
+    printf("------------------------------------------------------------------------------------------------------------------------\n");
+}
+
+
 //================================intro=================================
 
 void intro() {
+    desenhar("ilustracoes/ceu.txt");
+    system("color 07");
     printf("Narração: É noite de domingo. Sua mãe acaba de te aprontar para dormir. Ainda sem sono, você pede a ela uma história.\n");
-    printf("Mãe: Pronto, meu amor… Quer que eu conte aquela história do coelhinho ou invento algo novo hoje?\n");
-    printf("Protagonista: Hum… acho que quero algo mais… assustador. Mas não muito, tá? Só pra dar um friozinho na barriga.\n");
-    desenhar("A1.txt");
-    printf("Assustador, é? Então acho que posso te contar algumas lendas que a vovó me contava quando eu era pequena.\nSão histórias da nossa Amazônia… sobre a Iara, a Matinta Perera e Boiúna.\n");
-    printf("Qual você quer ouvir primeiro?\n");
+    system("pause");
+    
+    system("cls");
+    system("color 80");
+    desenhar("ilustracoes/mae.txt");
+    printaLinha(); printf("Mãe: Pronto, meu amor… Quer que eu conte aquela história do coelhinho ou invento algo novo hoje?\n"); 
+    printaLinha(); printf("Protagonista: Hum… acho que quero algo mais… assustador. Mas não muito, tá? Só pra dar um friozinho na barriga.\n"); 
+    printaLinha(); printf("Assustador, é? Então acho que posso te contar algumas lendas que a vovó me contava quando eu era pequena.\nSão histórias da nossa Amazônia… sobre a Iara, a Matinta Perera e Boiúna.\n");
+    printaLinha(); printf("Qual você quer ouvir primeiro?\n");
     escolhaLenda();
 }
 
 void escolhaLenda() {
-printf("1. Iara\n");
-printf("2. Matinta Perera\n");
-printf("3. Boiúna\n");
+printf("---------------------------\n");
+printf("| 1. Iara                 |\n");
+printf("---------------------------\n");
+printf("| 2. Matinta Perera       |\n");
+printf("---------------------------\n");
+printf("| 3. Boiúna               |\n");
+printf("---------------------------\n");
+
 int op = escolha(1, 3);
 switch (op) {
     case 1: noDaIara1A(); break;
@@ -152,14 +167,23 @@ switch (op) {
 // ===============================lenda Iara============================
 
 void noDaIara1A() {
-    printf("A Iara é uma sereia das águas doces, linda como o luar refletido no rio. Dizem que ela vive nas profundezas, com cabelos longos e negros, pele dourada pelo sol e olhos verdes como a mata.\n");
-    printf("Mas cuidado… sua beleza é perigosa. Ela canta para encantar pescadores e viajantes, levando-os para o fundo do rio, de onde nunca mais voltam.\n");
-    printf("Uma noite, um jovem pescador chamado Aruã estava sozinho no barco, quando ouviu uma melodia suave vindo da neblina sobre o rio…\n");
-    desenhar("A2.txt");
+    desenhar("ilustracoes/iara.txt");
+    printf("A Iara é uma sereia das águas doces, linda como o luar refletido no rio. Dizem que ela vive nas profundezas, com cabelos\n");
+    printf("longos e negros, pele dourada pelo sol e olhos verdes como a mata. Mas cuidado… sua beleza é perigosa.\n");
+    printf("Ela canta para encantar pescadores e viajantes, levando-os para o fundo do rio, de onde nunca mais voltam.\n"); printaLinha();
+    system("pause");
+    system("cls");
+    desenhar("ilustracoes/arua.txt");
+    printf("Uma noite, um jovem pescador chamado Aruã estava sozinho no barco, quando ouviu uma melodia suave vindo da neblina sobre\no rio…\n"); printaLinha();
     printf("Se fosse você no lugar de Aruã, o que faria?\n");
-    printf("1. Seguir o som.\n");
-    printf("2. Ficar parado e ouvir.\n");
-    printf("3. Fugir remando.\n");
+    printf("----------------------------------\n");
+    printf("| 1. Seguir o som.               |\n");
+    printf("----------------------------------\n");
+    printf("| 2. Ficar parado e ouvir.       |\n");
+    printf("----------------------------------\n");
+    printf("| 3. Fugir remando.              |\n");
+    printf("----------------------------------\n");
+    
     int op = escolha(1, 3);
     switch (op)
     {
@@ -171,277 +195,646 @@ void noDaIara1A() {
 
 
 void noDaIara2A() {
-    printf("Aruã rema em direção à voz. A neblina se abre e ele vê a Iara, sorrindo. Os olhos dela brilham como esmeraldas. Uma leveza toma conta de seu corpo, como se a água o chamasse pelo nome e o barco já não fosse chão, mas um obstáculo entre ele e aquilo que deseja.\n");
-    printf("1. Mergulhar para se aproximar.\n");
-    printf("2. Fechar os olhos e tentar resistir.\n");
-    printf("3. Gritar para espantar a sereia.\n");
+    desenhar("ilustracoes/iara.txt");
+    printf("Aruã rema em direção à voz. A neblina se abre e ele vê a Iara, sorrindo. Os olhos dela brilham como esmeraldas.\n");
+    printf("Uma leveza toma conta de seu corpo, como se a água o chamasse pelo nome e o barco já não fosse chão, mas um obstáculo\nentre ele e aquilo que deseja.\n");
+    printf("-----------------------------------------\n");
+    printf("| 1. Mergulhar para se aproximar.       |\n");
+    printf("-----------------------------------------\n");
+    printf("| 2. Fechar os olhos e tentar resistir. |\n");
+    printf("-----------------------------------------\n");
+    printf("| 3. Gritar para espantar a sereia.     |\n");
+    printf("-----------------------------------------\n");
     int op = escolha(1, 3);
-    switch (op)
-    {
+    switch (op){
+    case 1:
+        printaLinha();
+        printf("|   Aruã se inclina, sentindo o casco balançar. A canção se adensa, quente e doce, como se dissesse que o mergulho é   |\n");
+        printf("|             retorno e descanso. Um clarão verde lampeja adiante, convidando-o a ir mais fundo.                       |\n");
+        printaLinha(); noDaIara3A(); break;
 
-    case 1: printf("Aruã se inclina, sentindo o casco balançar. A canção se adensa, quente e doce, como se dissesse que o mergulho é retorno e descanso. Um clarão verde lampeja adiante, convidando-o a ir mais fundo.\n");
-    noDaIara3A(); break;
+    case 2:
+        printaLinha();
+        printf("|    Ele aperta os olhos e agarra o remo, buscando peso no próprio corpo. O canto não some, muda de lugar e então,     |\n");
+        printf("|  mesmo sem olhar, Aruã percebe que algo cintila sob o casco, como se um punhado de luzes douradas pulasse no fundo.  |\n");
+        printaLinha();noDaIara3B(); break;
 
-    case 2: printf("Ele aperta os olhos e agarra o remo, buscando peso no próprio corpo. O canto não some, muda de lugar e então, mesmo sem olhar, Aruã percebe que algo cintila sob o casco, como se um punhado de luzes douradas pulasse no fundo.\n");
-    noDaIara3B(); break;
-
-    case 3: printf("Aruã enche o peito e solta um grito rasgado, batendo o remo na borda do casco. O som estala no ar e racha a bruma. O grito racha a bruma e faz ondas curtas tremerem ao redor do barco. A canção se desfaz, mas retorna fina, leve, em sussurros que correm com a brisa e repetem o nome dele...\n");
-    noDaIara3C(); break;    
+    case 3:
+        printaLinha();
+        printf("|  Aruã enche o peito e solta um grito rasgado, batendo o remo na borda do casco. O som estala no ar e racha a bruma.  |\n");
+        printf("|   O grito racha a bruma e faz ondas curtas tremerem ao redor do barco. A canção se desfaz, mas retorna fina, leve,   |\n");
+        printf("|                        em sussurros que correm com a brisa e repetem o nome dele...                                  |\n");
+        printaLinha(); noDaIara3C(); break;
     }
     
 }
 
 
 void noDaIara2B() {
-    printf("Aruã permanece imóvel, atento a cada som. A melodia se aproxima, ganhando detalhes, e então ele nota um reflexo trêmulo na superfície da água: a forma não é humana, mas algo que o observa de baixo, paciente.\n");
-    printf("1. Rezar e remar para trás.\n");
-    printf("2. Jogar uma rede na água.\n");
-    printf("3. Tocar um tambor para afastar o espírito.\n");
+    printaLinha();
+    printf("|   Aruã permanece imóvel, atento a cada som. A melodia se aproxima, ganhando detalhes, e então ele nota um            |\n");
+    printf("|   reflexo trêmulo na superfície da água: a forma não é humana, mas algo que o observa de baixo, paciente.            |\n");
+    printaLinha();
+    printf("-------------------------------------------------\n");
+    printf("| 1. Rezar e remar para trás.                   |\n");
+    printf("-------------------------------------------------\n");
+    printf("| 2. Jogar uma rede na água.                    |\n");
+    printf("-------------------------------------------------\n");
+    printf("| 3. Tocar um tambor para afastar o espírito.   |\n");
+    printf("-------------------------------------------------\n");
 
     int op = escolha(1, 3);
     switch (op)
     {
-    case 1: printf("Sem virar o rosto para a água, Aruã cruza os dedos no peito, sussurra uma reza curta e começa a remar de costas, sem mostrar a nuca, recua em braçadas curtas. A canção afina até virar um fio que quase se parte, e é nesse silêncio frágil que um sopro frio toca o rosto dele e sussurra seu nome.\n");
-    noDaIara3C(); break;
+    case 1:
+    printaLinha();
+    printf("|   Sem virar o rosto para a água, Aruã cruza os dedos no peito, sussurra uma reza curta e começa a remar de costas,   |\n");
+    printf("|     sem mostrar a nuca, recua em braçadas curtas. A canção afina até virar um fio que quase se parte, e é nesse      |\n");
+    printf("|                    silêncio frágil que um sopro frio toca o rosto dele e sussurra seu nome.                          |\n");
+    printaLinha(); noDaIara3C(); break;
 
-    case 2: printf("Aruã lança a rede com um giro firme, deixando-a abrir como um véu sobre o espelho escuro. A rede abre como um véu e afunda macia. Por um instante, nada então a linha estremece, puxa, arranha a palma. Quando Aruã recolhe, as malhas voltam rasgadas e um brilho verde se move lá adiante.\n");
-    noDaIara3A(); break;
+    case 2:
+    printaLinha();
+    printf("| Aruã lança a rede com um giro firme, deixando-a abrir como um véu sobre o espelho escuro. A rede abre como um véu e  |\n");
+    printf("|  afunda macia. Por um instante, nada então a linha estremece, puxa, arranha a palma. Quando Aruã recolhe, as malhas  |\n");
+    printf("|                           voltam rasgadas e um brilho verde se move lá adiante.                                      |\n");
+    printaLinha(); noDaIara3A(); break;
 
-    case 3: printf("Aruã pega o pequeno tambor e marca um ritmo curto e grave, que bate no peito e corre pela superfície da água. O ritmo grave corre pela pele do rio. A melodia falha e se cala, mas a água permanece inquieta, riscada por lampejos dourados que dançam sob o casco.\n");
-    noDaIara3B(); break;
+    case 3:
+    printaLinha();
+    printf("|    Aruã pega o pequeno tambor e marca um ritmo curto e grave, que bate no peito e corre pela superfície da água.     |\n");
+    printf("|          O ritmo grave corre pela pele do rio. A melodia falha e se cala, mas a água permanece inquieta,             |\n");
+    printf("|                          riscada por lampejos dourados que dançam sob o casco.                                       |\n");
+    printaLinha(); noDaIara3B(); break;
     }
 }
 
 
 void noDaIara2C() {
-    printf("Aruã finca o remo e dispara. A cada braçada, porém, a canção cresce, como se não estivesse à frente, mas no encalço dele, soprando-lhe na nuca e confundindo sua direção.\n");
-    printf("1. Continuar remando até a margem.\n");
-    printf("2. Pular na água para nadar mais rápido.\n");
-    printf("3. Fechar os ouvidos e cantar alto.\n");
+    printaLinha();
+    printf("|   Aruã finca o remo e dispara. A cada braçada, porém, a canção cresce, como se não estivesse à frente,               |\n");
+    printf("|                   mas no encalço dele, soprando-lhe na nuca e confundindo sua direção.                               |\n");
+    printaLinha();
+
+    printf("--------------------------------------------\n");
+    printf("| 1. Continuar remando até a margem.       |\n");
+    printf("--------------------------------------------\n");
+    printf("| 2. Pular na água para nadar mais rápido. |\n");
+    printf("--------------------------------------------\n");
+    printf("| 3. Fechar os ouvidos e cantar alto.      |\n");
+    printf("--------------------------------------------\n");
+
     int op = escolha(1, 3);
     switch (op)
     {
+    case 1:
+    printaLinha();
+    printf("|     Ele fixa o olhar na linha escura das árvores e não perde o compasso. Os braços ardem, o casco corta a água       |\n");
+    printf("|       com pressa. O canto, atrás, se afina como se passasse por dentro do casco, quando Aruã olha de relance,        |\n");
+    printf("|                                  percebe pontos de luz girando sob ele.                                              |\n");
+    printaLinha(); noDaIara3B(); break;
 
-    case 1: printf("Ele fixa o olhar na linha escura das árvores e não perde o compasso. Os braços ardem, o casco corta a água com pressa. O canto, atrás, se afina como se passasse por dentro do casco, quando Aruã olha de relance, percebe pontos de luz girando sob ele.\n");
-    noDaIara3B(); break;
+    case 2:
+    printaLinha();
+    printf("|      Cego de urgência, a ideia de abandonar o barco parece, por um segundo, a única saída. O corpo se inclina,       |\n");
+    printf("|         os dedos tocam a borda fria e a canção muda de tom vira promessa enquanto, adiante, a bruma se abre.         |\n");
+    printaLinha(); noDaIara3A(); break;
 
-    case 2: printf("Cego de urgência, a ideia de abandonar o barco parece, por um segundo, a única saída. O corpo se inclina, os dedos tocam a borda fria e a canção muda de tom vira promessa enquanto, adiante, a bruma se abre.\n");
-    noDaIara3A(); break;
-
-    case 3: printf("Aruã aperta as mãos contra as orelhas e solta sua própria cantiga, firme e fora do encanto, marcando o ritmo com o remo. A voz dele cria um trilho, um som-casulo onde a melodia estranha não entra. A canção da Iara se desfaz em volta, mas não some de todo, volta pelas frestas do vento, em palavras quebradas que se juntam no nome dele.\n");
-    noDaIara3C(); break;    
+    case 3:
+    printaLinha();
+    printf("|   Aruã aperta as mãos contra as orelhas e solta sua própria cantiga, firme e fora do encanto, marcando o ritmo com   |\n");
+    printf("|    o remo. A voz dele cria um trilho, um som-casulo onde a melodia estranha não entra. A canção da Iara se desfaz    |\n");
+    printf("|    em volta, mas não some de todo, volta pelas frestas do vento, em palavras quebradas que se juntam no nome dele.   |\n");
+    printaLinha(); noDaIara3C(); break;
     }
-}
+    }
 
 
 void noDaIara3A() {
-    printf("A melodia não era mais apenas um som, meu bem, ela cresceu e se tornou a própria pulsação do rio. A água vibrava com a canção. A neblina, antes cinzenta, agora parecia tecida com fios de prata, e no meio dela, a Iara surgiu novamente, ainda mais perto. Seus lábios se moviam, formando palavras que Aruã não entendia, mas seu coração sim. Elas prometiam um lugar sem tristeza, um tesouro escondido só para ele, tudo o que ele sempre sonhou em segredo.\n");
-    printf("1. Responder ao chamado com um aceno.\n");
-    printf("2. Virar o barco para a margem oposta.\n");
-    printf("3. Atirar uma pedra na água para quebrar o encanto.\n");
+    printaLinha();
+    printf("| A melodia não era mais apenas um som, meu bem, ela cresceu e se tornou a própria pulsação do rio. A água vibrava com |\n");
+    printf("| a canção. A neblina, antes cinzenta, agora parecia tecida com fios de prata, e no meio dela, a Iara surgiu novamente,|\n");
+    printf("|ainda mais perto. Seus lábios se moviam, formando palavras que Aruã não entendia, mas seu coração sim. Elas prometiam |\n");
+    printf("|          um lugar sem tristeza, um tesouro escondido só para ele, tudo o que ele sempre sonhou em segredo.           |\n");
+    printaLinha();
+    printf("-------------------------------------------------------\n");
+    printf("| 1. Responder ao chamado com um aceno.               |\n");
+    printf("-------------------------------------------------------\n");
+    printf("| 2. Virar o barco para a margem oposta.              |\n");
+    printf("-------------------------------------------------------\n");
+    printf("| 3. Atirar uma pedra na água para quebrar o encanto. |\n");
+    printf("-------------------------------------------------------\n");
+
     int op = escolha(1, 3);
     switch (op)
     {
-    case 1: printf("Com o coração batendo descompassado, Aruã ergue a mão, um gesto lento, quase em sonho. O sorriso da Iara se abre como uma flor rara na correnteza. E então, ele sente: um toque gelado e liso roçando seu tornozelo, subindo pela perna, como se o próprio rio, com dedos de água, quisesse puxá-lo para um abraço.\n");
-    noDaIara4A(); break;
-    case 2: printf("Num lampejo de medo, ele joga todo o peso do corpo no remo, tentando virar o barco para a margem oposta. Mas a melodia... ah, a melodia já não estava mais do lado de fora. Ela se infiltrou em sua mente, doce e persistente, como se fosse seu próprio pensamento. Cada braçada parecia mais lenta, mais pesada, como se ele remasse contra um rio de mel\n");
-    noDaIara4B(); break;
-    case 3: printf("Com a mão trêmula, ele pega uma pedra do fundo do barco e a atira na água. O som seco quebra o silêncio por um instante. A superfície se agita, as ondas se espalham, e lá embaixo, sob o casco, uma sombra enorme desliza, lenta e majestosa, como se o verdadeiro guardião do rio estivesse ali, avaliando aquele pequeno intruso.\n");
-    noDaIara4C(); break;
+    case 1:
+    printaLinha();
+    printf("|     Com o coração batendo descompassado, Aruã ergue a mão, um gesto lento, quase em sonho. O sorriso da Iara se      |\n");
+    printf("|      abre como uma flor rara na correnteza. E então, ele sente: um toque gelado e liso roçando seu tornozelo,        |\n");
+    printf("|           subindo pela perna, como se o próprio rio, com dedos de água, quisesse puxá-lo para um abraço              |\n");
+    printaLinha(); noDaIara4A(); break;
+
+    case 2:
+    printaLinha();
+    printf("|      Num lampejo de medo, ele joga todo o peso do corpo no remo, tentando virar o barco para a margem oposta.        |\n");
+    printf("|      Mas a melodia... ah, a melodia já não estava mais do lado de fora. Ela se infiltrou em sua mente, doce e        |\n");
+    printf("|           persistente, como se fosse seu próprio pensamento. Cada braçada parecia mais lenta, mais pesada,           |\n");
+    printf("|                                  como se ele remasse contra um rio de mel.                                           |\n");
+    printaLinha(); noDaIara4B(); break;
+
+    case 3:
+    printaLinha();
+    printf("|     Com a mão trêmula, ele pega uma pedra do fundo do barco e a atira na água. O som seco quebra o silêncio por      |\n");
+    printf("|        um instante. A superfície se agita, as ondas se espalham, e lá embaixo, sob o casco, uma sombra enorme        |\n");
+    printf("|                      desliza, lenta e majestosa, como se o verdadeiro guardião do rio estivesse ali,                 |\n");
+    printf("|                                            avaliando aquele pequeno intruso.                                         |\n");
+    printaLinha(); noDaIara4C(); break;
     }
-}
+    }
 
 
 void noDaIara3B() {
-    printf("Enquanto Aruã tenta se afastar daquele canto perigoso, algo chama sua atenção. Bem debaixo do barco, no leito escuro do rio, um brilho dourado pulsa suavemente. Não era um brilho qualquer, parecia que um baú de tesouros de um rei antigo tinha se aberto lá no fundo, espalhando moedas, joias e colares que dançavam com a correnteza, convidando-o a mergulhar e pegar tudo para si.\n");
-    printf("1. Mergulhar para pegar o que brilha.\n");
-    printf("2. Ignorar e continuar remando.\n");
-    printf("3. Usar o remo para mexer a água e ver o que é.\n");
+    printaLinha();
+    printf("| Enquanto Aruã tenta se afastar daquele canto perigoso, algo chama sua atenção. Bem debaixo do barco, no leito escuro |\n");
+    printf("|   do rio, um brilho dourado pulsa suavemente. Não era um brilho qualquer, parecia que um baú de tesouros de um rei   |\n");
+    printf("|         antigo tinha se aberto lá no fundo, espalhando moedas, joias e colares que dançavam com a correnteza,        |\n");
+    printf("|                                convidando-o a mergulhar e pegar tudo para si.                                        |\n");
+    printaLinha();
+
+    printf("---------------------------------------------------\n");
+    printf("| 1. Mergulhar para pegar o que brilha.           |\n");
+    printf("---------------------------------------------------\n");
+    printf("| 2. Ignorar e continuar remando.                 |\n");
+    printf("---------------------------------------------------\n");
+    printf("| 3. Usar o remo para mexer a água e ver o que é. |\n");
+    printf("---------------------------------------------------\n");
+        
     int op = escolha(1, 3);
-    switch (op)
-    {
-    case 1: printf("A cobiça foi mais forte que o medo. Aruã se inclina sobre a borda do barco, e a água gelada envolve seus dedos na tentativa de pegar uma das moedas. No mesmo instante, algo liso e frio roça seu pé, mas não foi um toque acidental. Foi firme, como uma mão que o segurava ali\n");
-    noDaIara4A(); break;
-    case 2: printf("Ele balança a cabeça, tentando afastar a tentação daquele tesouro. Tenta se concentrar no ritmo do remo, na força dos braços, mas a melodia da Iara, que parecia ter diminuído, agora retorna com força total, pulsando dentro da sua cabeça e abafando todos os outros sons do mundo\n");
-    noDaIara4B(); break;
-    case 3: printf("Desconfiado, Aruã usa a ponta do remo para tocar o fundo e agitar a areia. O remo corta a água e, num piscar de olhos, todo aquele brilho dourado desaparece como fumaça. E no lugar onde estava o tesouro, uma sombra imensa e silenciosa passa sob o barco, tão grande que por um segundo escureceu a noite.\n");
-    noDaIara4C(); break;
+    switch (op){
+    case 1:
+    printaLinha();
+    printf("|   A cobiça foi mais forte que o medo. Aruã se inclina sobre a borda do barco, e a água gelada envolve seus dedos     |\n");
+    printf("|    na tentativa de pegar uma das moedas. No mesmo instante, algo liso e frio roça seu pé, mas não foi um toque       |\n");
+    printf("|                        acidental. Foi firme, como uma mão que o segurava ali                                         |\n");
+    printaLinha(); noDaIara4A(); break;
+
+    case 2:
+    printaLinha();
+    printf("|  Ele balança a cabeça, tentando afastar a tentação daquele tesouro. Tenta se concentrar no ritmo do remo, na força   |\n");
+    printf("| dos braços, mas a melodia da Iara, que parecia ter diminuído, agora retorna com força total, pulsando dentro da sua  |\n");
+    printf("|                       cabeça e abafando todos os outros sons do mundo                                                |\n");
+    printaLinha(); noDaIara4B(); break;
+
+    case 3:
+    printaLinha();
+    printf("|   Desconfiado, Aruã usa a ponta do remo para tocar o fundo e agitar a areia. O remo corta a água e, num piscar de    |\n");
+    printf("|   olhos, todo aquele brilho dourado desaparece como fumaça. E no lugar onde estava o tesouro, uma sombra imensa e    |\n");
+    printf("|               silenciosa passa sob o barco, tão grande que por um segundo escureceu a noite.                         |\n");
+    printaLinha(); noDaIara4C(); break;
     }
 }
 
+
 void noDaIara3C() {
-    printf("O canto parou, mas o silêncio que ficou era ainda mais assustador. Uma brisa leve e fria soprou contra o rosto de Aruã, e junto com ela, veio um sussurro que parecia vir de todos os lados e de lugar nenhum ao mesmo tempo. A voz, suave e quase humana, repetia seu nome... 'Aruã... Aruã...\n");
-    printf("1. Responder ao sussurro.\n");
-    printf("2. Ignorar e remar.\n");
-    printf("3. Usar o remo para mexer a água e ver o que é.\n");
+    printaLinha();
+    printf("|   O canto parou, mas o silêncio que ficou era ainda mais assustador. Uma brisa leve e fria soprou contra o rosto     |\n");
+    printf("|   de Aruã, e junto com ela, veio um sussurro que parecia vir de todos os lados e de lugar nenhum ao mesmo tempo.     |\n");
+    printf("|                  A voz, suave e quase humana, repetia seu nome... 'Aruã... Aruã...                                   |\n");
+    printaLinha();
+
+    printf("---------------------------------------------------\n");
+    printf("| 1. Responder ao sussurro.                       |\n");
+    printf("---------------------------------------------------\n");
+    printf("| 2. Ignorar e remar.                             |\n");
+    printf("---------------------------------------------------\n");
+    printf("| 3. Usar o remo para mexer a água e ver o que é. |\n");
+    printf("---------------------------------------------------\n"); 
+
     int op = escolha(1, 3);
-    switch (op)
-    {
-    case 1: printf("Quem está aí?', ele pergunta, e a resposta ecoa não em palavras, mas em um toque. Algo frio e esguio toca seu tornozelo, como se a própria água tivesse mãos e estivesse chamando por ele.\n");
-    noDaIara4A(); break;
-    case 2: printf("Assustado, ele pega um pano de dentro do barco e amarra na cabeça, cobrindo os ouvidos. O som do vento abafa o sussurro, mas a melodia traiçoeira da Iara reaparece, desta vez dentro de sua mente, insistente e impossível de ignorar.\n");
-    noDaIara4B(); break;
-    case 3: printf("Ele usa o remo como um leme, girando o barco lentamente, tentando encontrar de onde vem a voz. Mas a voz parece acompanhá-lo. É então que ele percebe a sombra enorme sob o casco, girando junto com ele, como um guardião paciente esperando sua decisão.\n");
-    noDaIara4C(); break;
+    switch (op){
+    case 1:
+    printaLinha();
+    printf("|   Quem está aí?', ele pergunta, e a resposta ecoa não em palavras, mas em um toque. Algo frio e esguio toca seu      |\n");
+    printf("|                tornozelo, como se a própria água tivesse mãos e estivesse chamando por ele.                          |\n");
+    printaLinha(); noDaIara4A(); break;
+
+    case 2:
+    printaLinha();
+    printf("|   Assustado, ele pega um pano de dentro do barco e amarra na cabeça, cobrindo os ouvidos. O som do vento abafa o     |\n");
+    printf("|            sussurro, mas a melodia traiçoeira da Iara reaparece, desta vez dentro de sua mente,                      |\n");
+    printf("|                              insistente e impossível de ignorar.                                                     |\n");
+    printaLinha(); noDaIara4B(); break;
+
+    case 3:
+    printaLinha();
+    printf("|   Ele usa o remo como um leme, girando o barco lentamente, tentando encontrar de onde vem a voz. Mas a voz parece    |\n");
+    printf("|           acompanhá-lo. É então que ele percebe a sombra enorme sob o casco, girando junto com ele,                  |\n");
+    printf("|                          como um guardião paciente esperando sua decisão.                                            |\n");
+    printaLinha(); noDaIara4C(); break;
     }
+
 }
 
 
 void noDaIara4A() {
-    printf("Aquilo que roçou o tornozelo de Aruã não era um peixe. Era frio como o lodo do fundo do rio e liso como uma pedra polida pela correnteza. O toque se repetiu, mas desta vez com mais firmeza, envolvendo a perna dele num abraço gelado que parecia querer puxá-lo para baixo, para o coração escuro daquelas águas.\n");
-    printf("1. Chutar para se soltar.\n");
-    printf("2. Segurar firme no banco e não se mover.\n");
-    printf("3. Olhar para a água para ver o que é.\n");
+    printaLinha();
+    printf("|      Aquilo que roçou o tornozelo de Aruã não era um peixe. Era frio como o lodo do fundo do rio e liso como         |\n");
+    printf("|  uma pedra polida pela correnteza. O toque se repetiu, mas desta vez com mais firmeza, envolvendo a perna dele num   |\n");
+    printf("|           abraço gelado que parecia querer puxá-lo para baixo, para o coração escuro daquelas águas.                 |\n");
+    printaLinha();
+
+    printf("---------------------------------------------\n");
+    printf("| 1. Chutar para se soltar.                 |\n");
+    printf("--------------------------------------------\n");
+    printf("| 2. Segurar firme no banco e não se mover. |\n");
+    printf("--------------------------------------------\n");
+    printf("| 3. Olhar para a água para ver o que é.    |\n");
+    printf("--------------------------------------------\n");
+
     int op = escolha(1, 3);
-    switch (op)
-    {
-    case 1: printf("Num reflexo de puro pavor, Aruã chuta com força, sentindo o toque se desfazer. O alívio dura apenas um segundo. Pois quando ele levanta o olhar, a Iara está lá, parada à frente do barco, tão perto que ele consegue ver as gotas de água escorrendo dos longos cabelos negros dela, como se fossem pequenos diamantes líquidos.\n");
-    noDaIara5A(); break;
-    case 2: printf("Ele se agarra à madeira do barco com toda a força que tem, cravando os dedos, recusando-se a ceder. Mas não é ele quem precisa se mover. A correnteza ao redor do barco começa a girar, primeiro devagar, depois cada vez mais rápido, formando um redemoinho furioso que puxa o pequeno casco para o seu centro, como se o rio quisesse engoli-lo.\n");
-    noDaIara5B(); break;
-    case 3: printf("Vencido pela curiosidade, ele se inclina e mergulha o rosto na água, tentando enxergar o que o segura. E então, tudo para. O toque some, o rio se acalma de repente, a água fica límpida como um espelho. A neblina se abre, revelando um caminho estreito e sereno à sua frente, como um convite silencioso para a salvação... ou para uma armadilha...\n");
-    noDaIara5C(); break;    
+
+    switch (op){
+    case 1:
+    printaLinha();
+    printf("|   Num reflexo de puro pavor, Aruã chuta com força, sentindo o toque se desfazer. O alívio dura apenas um segundo.    |\n");
+    printf("| Pois quando ele levanta o olhar, a Iara está lá, parada à frente do barco, tão perto que ele consegue ver as gotas   |\n");
+    printf("|         de água escorrendo dos longos cabelos negros dela, como se fossem pequenos diamantes líquidos.               |\n");
+    printaLinha(); noDaIara5A(); break;
+
+    case 2:
+    printaLinha();
+    printf("|  Ele se agarra à madeira do barco com toda a força que tem, cravando os dedos, recusando-se a ceder. Mas não é ele   |\n");
+    printf("| rápido, formando um redemoinho furioso que puxa o pequeno casco para o seu centro, como se o rio quisesse engoli-lo. |\n");
+    printaLinha(); noDaIara5B(); break;
+
+    case 3:
+    printaLinha();
+    printf("|   Vencido pela curiosidade, ele se inclina e mergulha o rosto na água, tentando enxergar o que o segura. E então,    |\n");
+    printf("| tudo para. O toque some, o rio se acalma de repente, a água fica límpida como um espelho. A neblina se abre, revelan-|\n");
+    printf("| do um caminho estreito e sereno à sua frente, como um convite silencioso para a salvação... ou para uma armadilha... |\n");
+    printaLinha(); noDaIara5C(); break;
     }
+
 }
 
 void noDaIara4B() {
-    printf("A melodia já não vinha de fora, meu amor. Ela estava dentro da mente de Aruã, entrelaçada aos seus próprios pensamentos. Não havia como fugir, pois para onde ele olhava, o que ele pensava, a canção estava lá, doce e terrível, prometendo segredos e afogando sua vontade em notas suaves.\n");
-    printf("1. Cantar outra música para se distrair.\n");
-    printf("2. Tapar os ouvidos e fechar os olhos.\n");
-    printf("3. Pular na água para acabar com a pressão.\n");
+    printaLinha();
+    printf("|     A melodia já não vinha de fora, meu amor. Ela estava dentro da mente de Aruã, entrelaçada aos seus próprios      |\n");
+    printf("|         pensamentos. Não havia como fugir, pois para onde ele olhava, o que ele pensava, a canção estava lá,         |\n");
+    printf("|                  doce e terrível, prometendo segredos e afogando sua vontade em notas suaves.                        |\n");
+    printaLinha();
+    
+    
+    printf("-------------------------------------------------\n");
+    printf("| 1. Cantar outra música para se distrair.      |\n");
+    printf("-------------------------------------------------\n");
+    printf("| 2. Tapar os ouvidos e fechar os olhos.        |\n");
+    printf("-------------------------------------------------\n");
+    printf("| 3. Pular na água para acabar com a pressão.   |\n");
+    printf("-------------------------------------------------\n");
+
     int op = escolha(1, 3);
-    switch (op)
-    {
-    case 1: printf("Desesperado, ele busca em sua memória a canção mais antiga que conhece, uma cantiga de ninar que sua avó lhe ensinou. A voz dele, trêmula no início, rompe o feitiço por um instante, como um raio de sol na neblina. Mas o silêncio é quebrado pelo sorriso da Iara, que surge à sua frente, como se achasse graça da sua pequena rebeldia.\n");
-    noDaIara5A(); break;
-    case 2: printf("Ele aperta as mãos contra os ouvidos e fecha os olhos com força, buscando o escuro, o silêncio. Mas o som já estava dentro dele. Na escuridão, sem ver nada, ele sente o barco balançar e girar sem controle, puxado por uma força invisível que o arrasta para o meio do redemoinho.\n");
-    noDaIara5B(); break;
-    case 3: printf("A pressão da voz em seus ouvidos é insuportável, como se sua cabeça fosse se partir. Num ato de loucura, ele pula na água, buscando o choque gelado para quebrar o encanto. A pressão some, a música cessa. Mas o rio, de repente, fica silencioso demais, pesado, como se prendesse a respiração, aguardando o momento certo para o bote final.\n");
-    noDaIara5C(); break;
+    switch (op){
+    case 1:
+    printaLinha();
+    printf("| Desesperado, ele busca em sua memória a canção mais antiga que conhece, uma cantiga de ninar que sua avó lhe ensinou.|\n");
+    printf("|   A voz dele, trêmula no início, rompe o feitiço por um instante, como um raio de sol na neblina. Mas o silêncio é   |\n");
+    printf("|        quebrado pelo sorriso da Iara, que surge à sua frente, como se achasse graça da sua pequena rebeldia.         |\n");
+    printaLinha(); noDaIara5A(); break;
+
+    case 2:
+    printaLinha();
+    printf("| Ele aperta as mãos contra os ouvidos e fecha os olhos com força, buscando o escuro, o silêncio. Mas o som já estava  |\n");
+    printf("|          dentro dele. Na escuridão, sem ver nada, ele sente o barco balançar e girar sem controle,                   |\n");
+    printf("|                 puxado por uma força invisível que o arrasta para o meio do redemoinho.                              |\n");
+    printf("|                                                                                                                      |\n");
+    printaLinha(); noDaIara5B(); break;
+
+    case 3:
+    printaLinha();
+    printf("|  A pressão da voz em seus ouvidos é insuportável, como se sua cabeça fosse se partir. Num ato de loucura, ele pula   |\n");
+    printf("|            na água, buscando o choque gelado para quebrar o encanto. A pressão some, a música cessa.                 |\n");
+    printf("|              Mas o rio, de repente, fica silencioso demais, pesado, como se prendesse a respiração,                  |\n");
+    printf("|                              aguardando o momento certo para o bote final.                                           |\n");
+    printaLinha(); noDaIara5C(); break;
     }
 }
 
     
 void noDaIara4C() {
-    printf("A sombra que passou sob o barco era maior que qualquer peixe que ele já tinha visto. Não fazia barulho, não agitava a água. Deslizava lenta e silenciosa, uma mancha de escuridão profunda na água já escura do rio. Aruã não conseguia ver o que era, mas sentia, com um arrepio na espinha, que estava sendo observado por algo muito, muito antigo.\n");
-    printf("1. Ficar imóvel até a sombra sumir\n");
-    printf("2. Remar rápido para longe.\n");
-    printf("3. Bater o remo na água para espantar.\n");
+    
+    printaLinha();
+    printf("|       A sombra que passou sob o barco era maior que qualquer peixe que ele já tinha visto. Não fazia barulho,        |\n");
+    printf("|     não agitava a água. Deslizava lenta e silenciosa, uma mancha de escuridão profunda na água já escura do rio.     |\n");
+    printf("|                  Aruã não conseguia ver o que era, mas sentia, com um arrepio na espinha,                            |\n");
+    printf("|                         que estava sendo observado por algo muito, muito antigo.                                     |\n");
+    printaLinha();
+
+    printf("--------------------------------------------\n");
+    printf("| 1. Ficar imóvel até a sombra sumir       |\n");
+    printf("--------------------------------------------\n");
+    printf("| 2. Remar rápido para longe.              |\n");
+    printf("--------------------------------------------\n");
+    printf("| 3. Bater o remo na água para espantar.   |\n");
+    printf("--------------------------------------------\n");
+
     int op = escolha(1, 3);
-    switch (op)
-    {
-    case 1: printf("Ele prende a respiração, transforma seu corpo em estátua, rezando para que a criatura não o note. A sombra passa, lenta, e desaparece nas profundezas. Quando Aruã finalmente solta o ar, a Iara está diante dele, os olhos verdes fixos nos seus, como se a sombra fosse apenas a guardiã que anunciava a chegada da rainha.\n");
-    noDaIara5A(); break;
-    case 2: printf("O pânico toma conta. Ele rema com a força de dez homens, sem direção, apenas para longe daquela presença. A pressa e o medo agitam a água, e é o seu próprio desespero que alimenta a correnteza, fazendo o rio girar e um redemoinho começar a se formar bem debaixo dele.\n");
-    noDaIara5B(); break;
-    case 3: printf("Ele bate com a pá do remo na superfície, uma, duas, três vezes. O som ecoa pela noite como um trovão assustado. A sombra para. E então, um silêncio total cai sobre o rio. A água para de se mover, o vento para de soprar. Um silêncio pesado e sobrenatural, como se o próprio rio estivesse chocado com sua audácia.\n");
-    noDaIara5C(); break;
+
+    switch (op){
+    case 1:
+    printaLinha();
+    printf("|  Ele prende a respiração, transforma seu corpo em estátua, rezando para que a criatura não o note. A sombra passa,   |\n");
+    printf("|  lenta, e desaparece nas profundezas. Quando Aruã finalmente solta o ar, a Iara está diante dele, os olhos verdes    |\n");
+    printf("|           fixos nos seus, como se a sombra fosse apenas a guardiã que anunciava a chegada da rainha.                 |\n");
+    printaLinha(); noDaIara5A(); break;
+
+    case 2:
+    printaLinha();
+    printf("|     O pânico toma conta. Ele rema com a força de dez homens, sem direção, apenas para longe daquela presença.        |\n");
+    printf("|    A pressa e o medo agitam a água, e é o seu próprio desespero que alimenta a correnteza, fazendo o rio girar       |\n");
+    printf("|                         e um redemoinho começar a se formar bem debaixo dele.                                        |\n");
+    printaLinha(); noDaIara5B(); break;
+
+    case 3:
+    printaLinha();
+    printf("|   Ele bate com a pá do remo na superfície, uma, duas, três vezes. O som ecoa pela noite como um trovão assustado.    |\n");
+    printf("|     A sombra para. E então, um silêncio total cai sobre o rio. A água para de se mover, o vento para de soprar.      |\n");
+    printf("|           Um silêncio pesado e sobrenatural, como se o próprio rio estivesse chocado com sua audácia.                |\n");
+    printaLinha(); noDaIara5C(); break;
     }
 }
 
 
 // ================= QUINTA CAMADA (Finais) =================
 void noDaIara5A() {
-    printf("E então, ela surgiu à sua frente, tão próxima que o mundo inteiro pareceu desaparecer. Aruã via as pequenas gotas escorrendo dos fios de cabelo dela, cada uma um universo de brilho. Os olhos verdes da Iara não eram mais apenas um convite, eram um universo inteiro de promessas e perigos. Ele sentiu no fundo da alma que aquele era o momento decisivo, a última escolha entre a terra firme e o abraço eterno do rio.\n");
-    printf("1. Estender a mão para ela.\n");
-    printf("2. Virar o barco e fugir\n");
-    printf("3. Fechar os olhos e rezar.\n");
+    printaLinha();
+    printf("|  E então, ela surgiu à sua frente, tão próxima que o mundo inteiro pareceu desaparecer. Aruã via as pequenas gotas   |\n");
+    printf("|  escorrendo dos fios de cabelo dela, cada uma um universo de brilho. Os olhos verdes da Iara não eram mais apenas    |\n");
+    printf("|  um convite, eram um universo inteiro de promessas e perigos. Ele sentiu no fundo da alma que aquele era o momento   |\n");
+    printf("|                   decisivo, a última escolha entre a terra firme e o abraço eterno do rio.                           |\n");
+    printaLinha();
+
+    printf("-----------------------------------------\n");
+    printf("| 1. Estender a mão para ela.           |\n");
+    printf("-----------------------------------------\n");
+    printf("| 2. Virar o barco e fugir              |\n");
+    printf("-----------------------------------------\n");
+    printf("| 3. Fechar os olhos e rezar.           |\n");
+    printf("-----------------------------------------\n");
+
     int op = escolha(1, 3);
-    switch (op)
-    {
-    case 1: printf("O encanto foi mais forte. Lentamente, como em um sonho do qual não queria acordar, Aruã estendeu a mão. No instante em que seus dedos tocaram a pele fria e lisa da Iara, o mundo ao seu redor se dissolveu. O barco, o céu, as árvores... tudo se desfez em um turbilhão de água e luz verde, e a única coisa que restou foi a canção.\n");
-    noFinalNegativo1Iara(); break;
-    case 2: printf("Num último ato de coragem, ele se lembrou de sua casa, do cheiro da fumaça subindo da aldeia. Ele virou as costas para a beleza mortal da Iara e fincou o remo na água com toda a força que lhe restava. O barco deu um solavanco, e a correnteza, como se finalmente o libertasse, o empurrou para longe do canto e daquele olhar hipnotizante.\n");
-    noFinalPositivoIara(); break;
-    case 3: printf("Ele fechou os olhos, buscando uma força que não era sua, sussurrando uma prece que quase se perdeu no ar. Mas a escuridão que ele encontrou atrás das pálpebras não trouxe paz. Era uma escuridão que o envolveu por completo, e ele sentiu a água fria subir pelos seus pés, joelhos e cintura, até cobrir tudo, levando-o para o silêncio.\n");
-    noFinalNegativo2Iara(); break;
+
+    switch (op){
+    case 1:
+    printaLinha();
+    printf("| O encanto foi mais forte. Lentamente, como em um sonho do qual não queria acordar, Aruã estendeu a mão. No instant   |\n");
+    printf("|      em que seus dedos tocaram a pele fria e lisa da Iara, o mundo ao seu redor se dissolveu. O barco, o céu,        |\n");
+    printf("|     as árvores... tudo se desfez em um turbilhão de água e luz verde, e a única coisa que restou foi a canção.       |\n");
+    printaLinha(); noFinalNegativo1Iara(); break;
+
+    case 2:
+    printaLinha();
+    printf("| Num último ato de coragem, ele se lembrou de sua casa, do cheiro da fumaça subindo da aldeia. Ele virou as costas    |\n");
+    printf("|  para a beleza mortal da Iara e fincou o remo na água com toda a força que lhe restava. O barco deu um solavanco,    |\n");
+    printf("|  e a correnteza, como se finalmente o libertasse, o empurrou para longe do canto e daquele olhar hipnotizante.       |\n");
+    printaLinha(); noFinalPositivoIara(); break;
+
+    case 3:
+    printaLinha();
+    printf("|     Ele fechou os olhos, buscando uma força que não era sua, sussurrando uma prece que quase se perdeu no ar.        |\n");
+    printf("| Mas a escuridão que ele encontrou atrás das pálpebras não trouxe paz. Era uma escuridão que o envolveu por completo, |\n");
+    printf("|    e ele sentiu a água fria subir pelos seus pés, joelhos e cintura, até cobrir tudo, levando-o para o silêncio.     |\n");
+    printaLinha(); noFinalNegativo2Iara(); break;
     }
 }
 
 
 void noDaIara5B() {
-    printf("A água, antes calma, agora era um monstro faminto. Ela começou a girar ao redor do barco, cada vez mais rápido e forte, formando um redemoinho profundo que puxava tudo para o seu centro escuro e barulhento. O pequeno barco de Aruã era como uma folha seca no meio da tempestade.\n");
-    printf("1. Remar contra a corrente\n");
-    printf("2. Deixar-se levar pelo redemoinho.\n");
-    printf("3. Tentar agarrar um galho na margem.\n");
+    printaLinha();
+    printf("|   A água, antes calma, agora era um monstro faminto. Ela começou a girar ao redor do barco, cada vez mais rápido     |\n");
+    printf("|         e forte, formando um redemoinho profundo que puxava tudo para o seu centro escuro e barulhento.              |\n");
+    printf("|                    O pequeno barco de Aruã era como uma folha seca no meio da tempestade.                            |\n");
+    printaLinha();
+
+    printf("-------------------------------------------\n");
+    printf("| 1. Remar contra a corrente              |\n");
+    printf("-------------------------------------------\n");
+    printf("| 2. Deixar-se levar pelo redemoinho.     |\n");
+    printf("-------------------------------------------\n");
+    printf("| 3. Tentar agarrar um galho na margem.   |\n");
+    printf("-------------------------------------------\n");
+
     int op = escolha(1, 3);
-    switch (op)
-    {
-    case 1: printf("Aruã gritou, um som de puro esforço e teimosia. Ele remou contra o giro, sentindo os músculos dos braços queimarem a cada braçada. Por um momento, pareceu inútil. Mas então, centímetro por centímetro, ele sentiu o barco resistir, romper a força do giro e finalmente alcançar as águas calmas da margem, ofegante e a salvo.\n");
-    noFinalPositivoIara(); break;
-    case 2: printf("O medo e o cansaço o venceram. Ele largou o remo e se encolheu no fundo do barco. O giro o engoliu, rápido e violento. E enquanto o mundo girava e a água o cobria, a canção da Iara voltou, não mais como um convite, mas como a melodia final que o envolveu para sempre.\n");
-    noFinalNegativo1Iara(); break;
-    case 3: printf("Num último esforço desesperado, ele viu um galho de árvore pendendo sobre a água e se esticou para agarrá-lo. Seus dedos tocaram a madeira, sentiram a esperança... mas o galho, velho e fraco, quebrou com um estalo seco. Sem apoio, ele foi puxado para o fundo do redemoinho sem chance de lutar.\n");
-    noFinalNegativo2Iara(); break;
+
+    switch (op){
+    case 1:
+    printaLinha();
+    printf("| Aruã gritou, um som de puro esforço e teimosia. Ele remou contra o giro, sentindo os músculos dos braços queimarem   |\n");
+    printf("| a cada braçada. Por um momento, pareceu inútil. Mas então, centímetro por centímetro, ele sentiu o barco resistir,   |\n");
+    printf("|           romper a força do giro e finalmente alcançar as águas calmas da margem, ofegante e a salvo.                |\n");
+    printaLinha(); noFinalPositivoIara(); break;
+
+    case 2:
+    printaLinha();
+    printf("|        O medo e o cansaço o venceram. Ele largou o remo e se encolheu no fundo do barco. O giro o engoliu,           |\n");
+    printf("|           rápido e violento. E enquanto o mundo girava e a água o cobria, a canção da Iara voltou,                   |\n");
+    printf("|                 não mais como um convite, mas como a melodia final que o envolveu para sempre.                       |\n");
+    printaLinha(); noFinalNegativo1Iara(); break;
+
+    case 3:
+    printaLinha();
+    printf("|   Num último esforço desesperado, ele viu um galho de árvore pendendo sobre a água e se esticou para agarrá-lo.      |\n");
+    printf("|   Seus dedos tocaram a madeira, sentiram a esperança... mas o galho, velho e fraco, quebrou com um estalo seco.      |\n");
+    printf("|                Sem apoio, ele foi puxado para o fundo do redemoinho sem chance de lutar.                             |\n");
+    printf("|                                                                                                                      |\n");
+    printaLinha(); noFinalNegativo2Iara(); break;
     }
 }
 
 
 void noDaIara5C() {
-    printf("Tão subitamente quanto começou, o perigo pareceu passar. A canção parou, o rio ficou completamente mudo, e a neblina se abriu como uma cortina no teatro, revelando um caminho estreito e seguro de água calma que levava direto para a margem. Era uma paz estranha, boa demais para ser verdade.\n");
-    printf("1. Seguir pelo caminho aberto.\n");
-    printf("2. Ficar parado e esperar.\n");
-    printf("3. Voltar pelo mesmo trajeto.\n");
+    
+    printaLinha();
+    printf("| Tão subitamente quanto começou, o perigo pareceu passar. A canção parou, o rio ficou completamente mudo, e a neblina |\n");
+    printf("|   se abriu como uma cortina no teatro, revelando um caminho estreito e seguro de água calma que levava direto para   |\n");              
+    printf("|                    a margem. Era uma paz estranha, boa demais para ser verdade.                                      |\n");
+    printaLinha();
+    printf("-----------------------------------------\n");
+    printf("| 1. Seguir pelo caminho aberto.        |\n");
+    printf("-----------------------------------------\n");
+    printf("| 2. Ficar parado e esperar.            |\n");
+    printf("-----------------------------------------\n");
+    printf("| 3. Voltar pelo mesmo trajeto.         |\n");
+    printf("-----------------------------------------\n");
+
     int op = escolha(1, 3);
-    switch (op)
-    {
-    case 1: printf("Desconfiado, mas sem outra opção, ele apontou o barco para aquele caminho. O barco deslizou suavemente, como se mãos invisíveis o guiassem para a segurança. Ao pisar na terra firme, ele olhou para trás e ouviu o canto recomeçar, mas agora era apenas um eco distante, uma lembrança de um perigo vencido.\n");
-    noFinalPositivoIara(); break;
-    case 2: printf("Ele não confiou naquela calmaria. Ficou parado, o coração batendo forte, esperando a próxima armadilha. Mas o perigo não veio de um som, veio do silêncio. Um puxão violento e repentino sob o barco o virou de uma só vez, arrastando-o para o fundo antes mesmo que ele pudesse gritar.\n");
-    noFinalNegativo2Iara(); break;
-    case 3: printf("Ele decidiu que era mais seguro voltar pelo caminho que já conhecia. Mas mal deu a primeira remada e a neblina se fechou novamente, densa e fria. A melodia retornou, muito mais próxima, quase sussurrada em seu ouvido. Antes que pudesse reagir, mãos geladas agarraram seus tornozelos e o arrastaram para as profundezas escuras.\n");
-    noFinalNegativo1Iara(); break;
+
+    switch (op){
+    case 1:
+    printaLinha();
+    printf("|   Desconfiado, mas sem outra opção, ele apontou o barco para aquele caminho. O barco deslizou suavemente, como se    |\n");
+    printf("| mãos invisíveis o guiassem para a segurança. Ao pisar na terra firme, ele olhou para trás e ouviu o canto recomeçar  |\n");
+    printf("|                  mas agora era apenas um eco distante, uma lembrança de um perigo vencido.                           |\n");
+    printaLinha(); noFinalPositivoIara(); break;
+
+    case 2:
+    printaLinha();
+    printf("|      Ele não confiou naquela calmaria. Ficou parado, o coração batendo forte, esperando a próxima armadilha.         |\n");
+    printf("|      Mas o perigo não veio de um som, veio do silêncio. Um puxão violento e repentino sob o barco o virou de         |\n");
+    printf("|                  uma só vez, arrastando-o para o fundo antes mesmo que ele pudesse gritar.                           |\n");
+    printaLinha(); noFinalNegativo2Iara(); break;
+
+    case 3:
+    printaLinha();
+    printf("|   Ele decidiu que era mais seguro voltar pelo caminho que já conhecia. Mas mal deu a primeira remada e a neblina     |\n");
+    printf("|     se fechou novamente, densa e fria. A melodia retornou, muito mais próxima, quase sussurrada em seu ouvido.       |\n");
+    printf("|    Antes que pudesse reagir, mãos geladas agarraram seus tornozelos e o arrastaram para as profundezas escuras.      |\n");
+    printaLinha(); noFinalNegativo1Iara(); break;
     }
 }
 
 
 void noFinalPositivoIara() {
-    printf("Aruã remou com a força que só o medo e a vontade de viver conseguem dar. O barco cortou as águas e finalmente encalhou na lama da margem. Ele se jogou na terra, sentindo o chão firme e seguro debaixo do corpo, o cheiro de folha molhada, o som dos grilos... sons de casa. Ofegante, ele olhou para trás e viu a neblina se fechar sobre o rio, escondendo a Iara e seu canto. Ele não sentiu raiva, nem ódio, mas um respeito profundo e um medo saudável.\n");
-    printf("Mãe: Ele voltou para casa, meu amor. E nunca mais olhou para o rio da mesma forma. Aprendeu naquela noite que a verdadeira coragem não é seguir qualquer impulso ou se provar para o desconhecido. A coragem de verdade, às vezes, é saber a hora de dizer 'não', de virar as costas para um chamado que parece bonito, mas que no fundo é perigoso. A Iara continua no rio, mas ele aprendeu que a prudência e a força de vontade podem vencer até o canto mais sedutor\n");
-    printf("Fim de jogo - Final Positivo!\n");
+    printaLinha();
+    printf("|   Aruã remou com a força que só o medo e a vontade de viver conseguem dar. O barco cortou as águas e finalmente      |\n");
+    printf("|  encalhou na lama da margem. Ele se jogou na terra, sentindo o chão firme e seguro debaixo do corpo, o cheiro de     |\n");
+    printf("| folha molhada, o som dos grilos... sons de casa. Ofegante, ele olhou para trás e viu a neblina se fechar sobre o rio,|\n");
+    printf("|    escondendo a Iara e seu canto. Ele não sentiu raiva, nem ódio, mas um respeito profundo e um medo saudável.       |\n");
+    printaLinha();
+
+    printaLinha();
+    printf("|  Mãe: Ele voltou para casa, meu amor. E nunca mais olhou para o rio da mesma forma. Aprendeu naquela noite que a     |\n");
+    printf("| verdadeira coragem não é seguir qualquer impulso ou se provar para o desconhecido. A coragem de verdade, às vezes,   |\n");
+    printf("|  é saber a hora de dizer 'não', de virar as costas para um chamado que parece bonito, mas que no fundo é perigoso.   |\n");
+    printaLinha();
+
+    printaLinha();
+    printf("| A Iara continua no rio, mas ele aprendeu que a prudência e a força de vontade podem vencer até o canto mais sedutor  |\n");
+    printaLinha();
+
+    printaLinha();
+    printf("|                                                                                                                      |\n");
+    printf("|-------------------------------------------------- Fim de jogo -------------------------------------------------------|\n");
+    printf("|                                                                                                                      |\n");
+    printaLinha();
     noCenaFinalIara();
 }
 
 
 void noFinalNegativo1Iara() {
-    printf("Aruã cedeu ao chamado. No instante em que ele se entregou, o mundo ao redor se tornou água, e a canção o envolveu por completo. Na manhã seguinte, a aldeia sentiu sua falta. Dias depois, encontraram sua canoa vazia, boiando à deriva, presa em alguns galhos na beira do rio. A vila nunca mais o viu.\n");
-    printf("Mãe: A história dele, meu bem, virou um aviso sussurrado nas noites de lua cheia. Um lembrete de que a curiosidade sem limites pode levar à perda. Dizem os mais antigos que, em noites de muito silêncio, quem chega perto do rio pode ouvir, bem baixinho, junto com a melodia da Iara, um canto triste de homem, um lamento de alguém que se perdeu para sempre. É uma lenda que nos lembra que nem todo convite bonito deve ser aceito e que algumas portas, uma vez abertas, nunca mais podem ser fechadas.\n");
-    printf("Fim de jogo, Final Negativo 1 - O Abraço do Encanto\n");
+    printaLinha();
+    printf("|  Aruã cedeu ao chamado. No instante em que ele se entregou, o mundo ao redor se tornou água, e a canção o envolveu   |\n");
+    printf("|   por completo. Na manhã seguinte, a aldeia sentiu sua falta. Dias depois, encontraram sua canoa vazia, boiando à    |\n");
+    printf("|                  deriva, presa em alguns galhos na beira do rio. A vila nunca mais o viu.                            |\n");
+    printf("|                                                                                                                      |\n");
+    printaLinha();
+
+    system("pause");
+    system("cls");
+    desenhar("ilustracoes/mae.txt");
+
+    printaLinha();
+    printf("|  Mãe: A história dele, meu bem, virou um aviso sussurrado nas noites de lua cheia. Um lembrete de que a curiosidade  |\n");
+    printf("|   sem limites pode levar à perda. Dizem os mais antigos que, em noites de muito silêncio, quem chega perto do rio    |\n");
+    printf("|                  deriva, presa em alguns galhos na beira do rio. A vila nunca mais o viu.                            |\n");
+    printf("| pode ouvir, bem baixinho, junto com a melodia da Iara, um canto triste de homem, um lamento de alguém que se perdeu  |\n");
+    printf("|                 para sempre. É uma lenda que nos lembra que nem todo convite bonito deve ser aceito                  |\n");
+    printf("|                       e que algumas portas, uma vez abertas, nunca mais podem ser fechadas.                          |\n");
+    printaLinha();
+
+    printaLinha();
+    printf("|                                                                                                                      |\n");
+    printf("|-------------------------------------------------- Fim de jogo -------------------------------------------------------|\n");
+    printf("|                                                                                                                      |\n");
+    printaLinha();
     noCenaFinalIara();
 }
 
-
 void noFinalNegativo2Iara() {
-    printf("Aruã tentou lutar, ele realmente tentou, mas no momento decisivo, ele parou. Ficou paralisado entre o medo de fugir e o desejo de resistir. E o rio, não espera por ninguém. A correnteza, que não perdoa a dúvida, o levou. Nem para o fundo, nem para a margem, apenas o carregou para um destino que ninguém jamais conheceu. O rio guardou seu segredo.\n");
-    printf("Mãe: Essa parte da história ensina a lição talvez mais dura de todas: que a indecisão diante do perigo pode ser tão fatal quanto a imprudência. Aruã não escolheu o encanto, mas também não escolheu a segurança a tempo. E o seu destino nos lembra que, às vezes, não fazer uma escolha já é deixar que o perigo escolha por você.\n");
-    printf("Fim de jogo, Final Negativo 2 - O Preço da Hesitação\n");
+    printaLinha();
+    printf("| Aruã tentou lutar, ele realmente tentou, mas no momento decisivo, ele parou. Ficou paralisado entre o medo de fugir  |\n");
+    printf("|     Nem para o fundo, nem para a margem, apenas o carregou para um destino que ninguém jamais conheceu.              |\n");
+    printf("|                                       O rio guardou seu segredo.                                                     |\n");
+    printaLinha();
+
+    system("pause");
+    system("cls");
+    desenhar("ilustracoes/mae.txt");
+
+    printaLinha();
+    printf("|   Mãe: Essa parte da história ensina a lição talvez mais dura de todas: que a indecisão diante do perigo pode ser    |\n");
+    printf("|    tão fatal quanto a imprudência. Aruã não escolheu o encanto, mas também não escolheu a segurança a tempo.         |\n");
+    printf("|   E o seu destino nos lembra que, às vezes, não fazer uma escolha já é deixar que o perigo escolha por você.         |\n");
+    printaLinha();
+
+    printaLinha();
+    printf("|                                                                                                                      |\n");
+    printf("|-------------------------------------------------- Fim de jogo -------------------------------------------------------|\n");
+    printf("|                                                                                                                      |\n");
+    printaLinha();
     noCenaFinalIara();
 }
 
 
 void noCenaFinalIara() {
-    printf("E essa, meu amor, é a história de Aruã e do canto da Iara. É uma lenda que a vovó me contava, não para me dar medo, mas para me ensinar a ouvir com o coração e a olhar para além das aparências.\n");
-    printf("A Iara é um aviso, sabe? Um aviso de que nem tudo que é belo é seguro. O perigo raramente se mostra feio e assustador; muitas vezes ele vem com um sorriso, com uma promessa de tesouro ou com uma melodia tão doce que nos faz esquecer o caminho de casa.\n");
-    printf("Aruã aprendeu, de um jeito ou de outro, que a curiosidade pode ser uma armadilha e que a prudência é o que nos mantém a salvo. Alguns dizem que, até hoje, nas noites de lua cheia, a canção dela ainda ecoa pelo rio, chamando os incautos, os distraídos. E quem ouve, precisa fazer a escolha que ele fez. Precisa decidir, lá no fundo da alma, se vai seguir o encanto ou resistir à tentação, se agarrando firme ao próprio barco para poder voltar para casa.\n");
+    system("cls");
+    desenhar("ilustracoes/mae.txt");
+    printaLinha();
+    printf("| E essa, meu amor, é a história de Aruã e do canto da Iara. É uma lenda que a vovó me contava, não para me dar medo,  |\n");
+    printf("|                  mas para me ensinar a ouvir com o coração e a olhar para além das aparências.                       |\n");
+    printaLinha();
+
+    system("pause");
+
+    printaLinha();
+    printf("|A Iara é um aviso, sabe? Um aviso de que nem tudo que é belo é seguro. O perigo raramente se mostra feio e assustador;|\n");
+    printf("|                 muitas vezes ele vem com um sorriso, com uma promessa de tesouro ou com uma                          |\n");
+    printf("|                      melodia tão doce que nos faz esquecer o caminho de casa.                                        |\n");
+    printf("|                                                                                                                      |\n");
+    printaLinha();
+
+    system("pause");
+
+    printaLinha();
+    printf("|   Aruã aprendeu, de um jeito ou de outro, que a curiosidade pode ser uma armadilha e que a prudência é o que nos     |\n");
+    printf("|       mantém a salvo. Alguns dizem que, até hoje, nas noites de lua cheia, a canção dela ainda ecoa pelo rio,        |\n");
+    printf("|            chamando os incautos, os distraídos. E quem ouve, precisa fazer a escolha que ele fez.                    |\n");
+    printf("|             Precisa decidir, lá no fundo da alma, se vai seguir o encanto ou resistir à tentação,                    |\n");
+    printf("|                       se agarrando firme ao próprio barco para poder voltar para casa.                               |\n");
+    printf("|                                                                                                                      |\n");
+    printaLinha();
     noTransicaoIara();
 }
 
 
 void noTransicaoIara() {
-    printf("E então, quer ouvir agora sobre a Matinta Perera, Boiúna ou quer ir dormir?\n");
+    system("cls");
+    desenhar("ilustracoes/mae.txt");
+    printaLinha();
+    printf("|                 E então, quer ouvir agora sobre a Matinta Perera, Boiúna ou quer ir dormir?                          |\n");
+    printaLinha();
     int op = escolha(1, 3);
     switch (op) {
+        
         case 1: noDaMatinta1B(); break;
         case 2: noDoBoiuna1C(); break;
-        case 3: printf("Boa noite, meu amor. Sonhe com os anjos e com as lendas da nossa terra. Te amo muito.");
-        printf("Fim de jogo - Até a próxima história!\n");
-        printf("Obrigado por jogar Lendas da Amazônia!\n");
+        case 3:
+
+        printaLinha();
+        printf("|                Boa noite, meu amor. Sonhe com os anjos e com as lendas da nossa terra. Te amo muito.                 |\n");
+        printaLinha();
+        printaLinha();
+        printf("|                                   Fim de jogo - Até a próxima história!                                              |\n");
+        printf("|                                   Obrigado por jogar Lendas da Amazônia!                                             |\n");
+        printaLinha();
+        system("pause");
         break;
     }
 }
 
 
-//==============================lenda Matinta===========================
+//=====================================lenda Matinta=============================================
 
 void noDaMatinta1B() {
     printf("Então vamos para a história da Matinta Perêra... Dizem que ela não é exatamente uma pessoa, nem exatamente um bicho. É um espírito antigo da floresta, uma velha feiticeira que durante o dia pode ser qualquer vizinha sua, mas que à noite se transforma. Ela voa sobre as casas, assobiando um som fino e arrepiante, pedindo fumo ou café. E ai de quem nega...\n");
@@ -953,7 +1346,8 @@ int main() {
     SetConsoleCP(CP_UTF8);
 
     janelaCheia();
-    system("color 80");
+    system("color 07");
+    //system("color 80");
 
     intro();
     return 0;
