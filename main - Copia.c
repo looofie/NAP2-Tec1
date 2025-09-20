@@ -152,7 +152,7 @@ int iara = 1;
 int matinta = 1;
 int boiuna = 1;
 
-void escolhaLenda(){ 
+void escolhaLenda() { 
     int op; 
     while(1){
     system("cls");
@@ -876,19 +876,20 @@ void noCenaFinalIara() {
 
 
 void noTransicaoIara() {
-    if(iara > 0){iara --;}
-    
+
     system("cls");
     desenhar("ilustracoes/mae.txt");
     printaLinha();
-    printf("|                               E então, quer ouvir outra lenda(1) ou quer ir dormir?(2)                               |\n");
+    printf("|                               E então, quer ouvir outra lenda ou quer ir dormir?                                     |\n");
     printaLinha();
 
-    int op = escolha(1, 2);
+    int op = escolha(1, 3);
+    switch (op) {
+        
+        case 1: noDaMatinta1B(); break;
+        case 2: noDoBoiuna1C(); break;
+        case 3:
 
-    switch(op){
-        case 1: escolhaLenda(); break;
-        case 2:
         system("color 07");
         printaLinha();
         printf("|                Boa noite, meu amor. Sonhe com os anjos e com as lendas da nossa terra. Te amo muito.                 |\n");
@@ -898,11 +899,10 @@ void noTransicaoIara() {
         printf("|                                   Obrigado por jogar Lendas da Amazônia!                                             |\n");
         printaLinha();
         system("pause");
-        system("exit");
-        break;
-        }
-    
-    }
+        break; }
+        
+}
+
 
 //=====================================lenda Matinta=============================================
 void noDaMatinta1B() {
