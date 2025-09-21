@@ -117,11 +117,10 @@ void printaLinha(){ printf("----------------------------------------------------
 
 //função de escolha de opções
 int escolha(int min, int max) {
-    printf("%d, %d, %d", iara, matinta, boiuna);
     int op;
     do {
         printaLinha();
-        printf("|                                  Digite o número da opção ou 0 para sair do jogo                                     |\n");
+        printf("|             Digite o número correspondente à sua escolha ou digite 0 para voltar ao menu inicial                     |\n");
         printaLinha();
         scanf("%d", &op);
         if (op == 0){exit(0);}
@@ -153,42 +152,45 @@ void intro() {
 }
 
 void escolhaLenda(){ 
-    int op; 
-    while(1){
-    system("cls");
-    desenhar("ilustracoes/mae.txt");
-    printaLinha();
-    printf("|                                         Qual você quer ouvir agora?                                                  |\n");
-    printaLinha();
-    if(iara){
-    printf("---------------------------\n");
-    printf("| 1. Iara                 |\n");
-    printf("---------------------------\n");
-    }
-    if(matinta){
-    printf("---------------------------\n");
-    printf("| 2. Matinta Perera       |\n");
-    printf("---------------------------\n");
-    }
-    if(boiuna){
-    printf("---------------------------\n");
-    printf("| 3. Boiúna               |\n");
-    printf("---------------------------\n");
-    }  
+    if((iara + matinta + boiuna) <= 0){noFinalNeutro();}
 
-    op = escolha(1, 3);
+    else{
+        int op; 
+        while(1){
+            system("cls");
+            desenhar("ilustracoes/mae.txt");
+            printaLinha();
+            printf("|                                         Qual você quer ouvir agora?                                                  |\n");
+            printaLinha();
+            if(iara){
+            printf("---------------------------\n");
+            printf("| 1. Iara                 |\n");
+            printf("---------------------------\n");
+            }
+            if(matinta){
+            printf("---------------------------\n");
+            printf("| 2. Matinta Perera       |\n");
+            printf("---------------------------\n");
+            }
+            if(boiuna){
+            printf("---------------------------\n");
+            printf("| 3. Boiúna               |\n");
+            printf("---------------------------\n");
+            }
+            op = escolha(1, 3);
+            if(op == 1 && iara){break;}
+            if(op == 2 && matinta){break;}
+            if(op == 3 && boiuna){break;}
+            }
 
-    if(op == 1 && iara){break;}
-    if(op == 2 && matinta){break;}
-    if(op == 3 && boiuna){break;}
-
+            switch (op){
+                case 1: noDaIara1A(); break;
+                case 2: noDaMatinta1B(); break;
+                case 3: noDoBoiuna1C(); break; 
+                }
+    
+        }
     }
-    switch (op){
-    case 1: noDaIara1A(); break;
-    case 2: noDaMatinta1B(); break;
-    case 3: noDoBoiuna1C(); break;
-    }
-}
 
 void creditos(){
     system("cls");
@@ -234,6 +236,7 @@ void menu(){
 // ===============================lenda Iara============================
 
 void noDaIara1A() {
+    if(iara > 0){iara --;}
     desenhar("ilustracoes/iara.txt");
     printf("A Iara é uma sereia das águas doces, linda como o luar refletido no rio. Dizem que ela vive nas profundezas, com cabelos\n");
     printf("longos e negros, pele dourada pelo sol e olhos verdes como a mata. Mas cuidado… sua beleza é perigosa.\n");
@@ -590,7 +593,6 @@ void noDaIara4B() {
 
     
 void noDaIara4C() {
-    
     printaLinha();
     printf("|       A sombra que passou sob o barco era maior que qualquer peixe que ele já tinha visto. Não fazia barulho,        |\n");
     printf("|     não agitava a água. Deslizava lenta e silenciosa, uma mancha de escuridão profunda na água já escura do rio.     |\n");
@@ -721,7 +723,6 @@ void noDaIara5B() {
 
 
 void noDaIara5C() {
-    
     printaLinha();
     printf("| Tão subitamente quanto começou, o perigo pareceu passar. A canção parou, o rio ficou completamente mudo, e a neblina |\n");
     printf("|   se abriu como uma cortina no teatro, revelando um caminho estreito e seguro de água calma que levava direto para   |\n");              
@@ -876,8 +877,6 @@ void noCenaFinalIara() {
 
 
 void noTransicaoIara() {
-    if(iara > 0){iara --;}
-
     system("cls");
     desenhar("ilustracoes/mae.txt");
     printaLinha();
@@ -885,7 +884,6 @@ void noTransicaoIara() {
     printaLinha();
 
     int op = escolha(1, 2);
-
     switch(op){
         case 1: escolhaLenda(); break;
         case 2:
@@ -899,14 +897,13 @@ void noTransicaoIara() {
         printaLinha();
         system("pause");
         //exit(EXIT_SUCCESS);
-        menu();
-        break;
+        menu(); break;
         }
-    
     }
 
 //=====================================lenda Matinta=============================================
 void noDaMatinta1B() {
+    if(matinta > 0){matinta --;}
     system("cls");
     desenhar("ilustracoes/matinta.txt");
 	printaLinha();
@@ -1443,7 +1440,6 @@ void noCenaFinalMatinta() {
 
 
 void noTransicaoMatinta() {
-    if(matinta > 0){matinta --;}
 	system("cls");
     desenhar("ilustracoes/mae.txt");
 
@@ -1469,7 +1465,7 @@ void noTransicaoMatinta() {
 	switch (op){
 	case 1: escolhaLenda(); break;
 
-	case 2: noFinalNeutro(); break;
+	case 2: noTransicaoFinal(); break;
 
     }
 }
@@ -1477,13 +1473,18 @@ void noTransicaoMatinta() {
 
 // ============================================ BOIUNA ============================================================================================================================================================
 void noDoBoiuna1C() {
+    if (boiuna > 0){boiuna --;}
+    desenhar("ilustracoes/boiuna.txt");
     printaLinha();
     printf("|     Então escute com atenção... A Boiúna não é como as outras lendas. Ela não canta, nem pede nada. Ela é a própria  |\n");
     printf("|      força do rio. Uma cobra tão imensa que seu corpo adormecido está enrolado sob a nossa cidade, de um bairro      |\n");
     printf("|       ao outro. Os mais velhos contam que o dia em que a Boiúna sair de seu repouso, Belém desmoronará e será        |\n");
     printf("|                                    tragada pelas águas da Baía do Guajará...                                         |\n");
     printaLinha();
+    system("pause");
 
+    system("cls");
+    desenhar("ilustracoes/matheus.txt");
     printaLinha();
     printf("|   E havia um menino chamado Matheus, que ouvia essa história e ria. Ele achava que era só conversa para assustar     |\n");
     printf("|    os medrosos. Para provar sua coragem, numa tarde em que a maré estava cheia e calma, ele pegou sua pequena        |\n");
@@ -1976,6 +1977,24 @@ void noCenaFinalBoiuna() {
     printf("|      E que sob a calma aparência de nossas águas, dorme um poder que deve, para sempre, ser deixado em paz.          |\n");
     printaLinha();
     system("pause");
+    
+    printaLinha();
+    printf("|                                     Ainda tem coragem para mais uma?                                                 |\n");
+    printaLinha();
+        
+	printf("-----------------------------------------\n");
+	printf("|  1. Sim, conta.                       |\n");
+	printf("-----------------------------------------\n");
+	printf("|  2. Não, já chega de susto por hoje.  |\n");
+	printf("-----------------------------------------\n");
+
+    int op = escolha(1, 2);
+	
+	switch (op){
+	case 1: escolhaLenda(); break;
+	case 2: noTransicaoFinal(); break;
+
+    }
 }
 
 
@@ -2041,6 +2060,7 @@ void noFinalBom() {
 
 
 void noFinalNeutro() {
+    system("color 07");
     system("cls");
     printaLinha();
     printf("|             É... as histórias da noite acabaram. Algumas escolhas foram sábias, outras...                            |\n");
