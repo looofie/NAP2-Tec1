@@ -6,13 +6,14 @@ printf("|                                                                       
 printaLinha(); noDaIara3C(); break;
 
 
-
+system("cls");
 printaLinha();
 printf("|                                                                                                                      |\n");
 printf("|                                                                                                                      |\n");
 printf("|                                                                                                                      |\n");
 printf("|                                                                                                                      |\n");
 printaLinha();
+system("pause");
 
 
 
