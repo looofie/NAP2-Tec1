@@ -131,6 +131,10 @@ int escolha(int min, int max) {
     
 }
 
+int contadorBom = 0;
+int contadorRuim = 0;
+
+
 //================================intro=================================
 
 void intro() {
@@ -764,6 +768,7 @@ void noDaIara5C() {
 
 
 void noFinalPositivoIara() {
+    contadorBom += 1;
     printaLinha();
     printf("|   Aruã remou com a força que só o medo e a vontade de viver conseguem dar. O barco cortou as águas e finalmente      |\n");
     printf("|  encalhou na lama da margem. Ele se jogou na terra, sentindo o chão firme e seguro debaixo do corpo, o cheiro de     |\n");
@@ -791,6 +796,7 @@ void noFinalPositivoIara() {
 
 
 void noFinalNegativo1Iara() {
+    contadorRuim += 1;
     printaLinha();
     printf("|  Aruã cedeu ao chamado. No instante em que ele se entregou, o mundo ao redor se tornou água, e a canção o envolveu   |\n");
     printf("|   por completo. Na manhã seguinte, a aldeia sentiu sua falta. Dias depois, encontraram sua canoa vazia, boiando à    |\n");
@@ -820,6 +826,7 @@ void noFinalNegativo1Iara() {
 }
 
 void noFinalNegativo2Iara() {
+    contadorRuim += 1;
     printaLinha();
     printf("| Aruã tentou lutar, ele realmente tentou, mas no momento decisivo, ele parou. Ficou paralisado entre o medo de fugir  |\n");
     printf("|     Nem para o fundo, nem para a margem, apenas o carregou para um destino que ninguém jamais conheceu.              |\n");
@@ -1394,6 +1401,7 @@ void noDaMatinta5C() {
 
 
 void noFinalPositivoMatinta() {
+    contadorBom += 1;
 	printaLinha();
 	printf("|                                               Bento aprendeu a lição.                                                |\n");
 	printf("|            Ele passou a respeitar os mistérios da noite e a ensinar os mais novos a sempre serem generosos.          |\n");
@@ -1405,6 +1413,7 @@ void noFinalPositivoMatinta() {
 
 
 void noFinalNegativo1Matinta() {
+    contadorRuim += 1;
 	printaLinha();
 	printf("|                                  Bento se perdeu para o seu próprio medo e desrespeito.                              |\n");
 	printf("|                                 A história dele virou um aviso para as crianças teimosas,                            |\n");
@@ -1416,6 +1425,7 @@ void noFinalNegativo1Matinta() {
 
 
 void noFinalNegativo2Matinta() {
+    contadorRuim += 1;
     printaLinha();
     printf("|                                    Bento conseguiu viver, mas nunca em paz de verdade.                               |\n");
     printf("|                                      Ele carregou para sempre o peso da sua escolha,                                 |\n");
@@ -1931,6 +1941,7 @@ void noDoBoiuna5C() {
 
 
 void noFinalPositivoBoiuna() {
+    contadorBom += 1;
     system("cls");
     printaLinha();
     printf("|        Matheus voltou para casa, não mais como um menino teimoso, mas como o portador de um segredo terrível.        |\n");
@@ -1943,6 +1954,7 @@ void noFinalPositivoBoiuna() {
 
 
 void noFinalNegativo1Boiuna() {
+    contadorRuim += 1;
     system("cls");
     printaLinha();
     printf("|        Não sobrou ninguém para contar a história de Matheus. A cidade de Belém virou uma lenda ela mesma,            |\n");
@@ -1956,6 +1968,7 @@ void noFinalNegativo1Boiuna() {
 
 
 void noFinalNegativo2Boiuna() {
+    contadorRuim += 1;
     system("cls");
     printaLinha();
     printf("|             Matheus nunca mais foi visto. Alguns dizem que ele foi devorado, outros que fugiu.                       |\n");
@@ -2020,6 +2033,13 @@ void noTransicaoFinal() {
     printf("|                           Que tipo de noite a sua jornada nos trouxe…?                                               |\n");
     printaLinha();
     system("pause");
+    if (contadorBom >= 2) {
+        noFinalBom();
+    } else if (contadorRuim >= 2) {
+        noFinalRuim();
+    } else {
+        noFinalNeutro();
+    }
 }
 
 
